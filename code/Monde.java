@@ -5,6 +5,9 @@ import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 
 import java.util.*;
@@ -17,17 +20,109 @@ public class Monde extends Application{
     /**
      * @return le panel du nombre de parcelles
      */
-    private VBox nbParcelles(){
-        VBox res=new VBox(5);
-        return res;
+    private void nbParcelles(){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Taille du plateau");
+        alert.setHeaderText("Choisissez la taille du plateau");
+
+        ButtonType boutonTrois = new ButtonType("3x3");
+        ButtonType boutonQuatre = new ButtonType("4x4");
+        ButtonType boutonCinq = new ButtonType("5x5");
+
+        alert.getButtonTypes().setAll(boutonTrois, boutonQuatre, boutonCinq);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == boutonTrois){
+            System.out.println("Choix 3x3");
+        } else if (result.get() == boutonQuatre) {
+            System.out.println("Choix 4x4");
+        } else if (result.get() == boutonCinq) {
+            System.out.println("Choix 5x5");
+        } else {
+            this.nbParcelles();
+        }
     }
 
     /**
      * @return le panel du nombre de personnages
      */
-    private VBox nbPersos(){
-        VBox res=new VBox(5);
-        return res;
+    private void nbPersos(){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Nombre de personnages");
+        alert.setHeaderText("Choisissez le nombre de personnages");
+
+        ButtonType boutonChoixUn = new ButtonType("30 Gnomes et 10 Elfes");
+        ButtonType boutonChoixDeux = new ButtonType("50 Gnomes et 15 Elfes");
+        ButtonType boutonChoixTrois = new ButtonType("80 Gnomes et 20 Elfes");
+
+        alert.getButtonTypes().setAll(boutonChoixUn, boutonChoixDeux, boutonChoixTrois);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == boutonChoixUn){
+            System.out.println("Choix 30 Gnomes et 10 Elfes");
+        } else if (result.get() == boutonChoixDeux) {
+            System.out.println("Choix 50 Gnomes et 15 Elfes");
+        } else if (result.get() == boutonChoixTrois) {
+            System.out.println("Choix 80 Gnomes et 20 Elfes");
+        } else {
+            this.nbPersos();
+        }
+    }
+
+        /**
+     * @return le panel du nombre de personnages
+     */
+    private void nbJoueurs(){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Nombre de joueurs");
+        alert.setHeaderText("Choisissez le nombre de joueurs");
+
+        ButtonType boutonChoixUn = new ButtonType("1 joueur");
+        ButtonType boutonChoixDeux = new ButtonType("2 joueurs");
+        ButtonType boutonChoixTrois = new ButtonType("3 joueurs");
+
+        alert.getButtonTypes().setAll(boutonChoixUn, boutonChoixDeux, boutonChoixTrois);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == boutonChoixUn){
+            System.out.println("Choix 1 joueur");
+        } else if (result.get() == boutonChoixDeux) {
+            System.out.println("Choix 2 joueurs");
+        } else if (result.get() == boutonChoixTrois) {
+            System.out.println("Choix 3 joueurs");
+        } else {
+            this.nbPersos();
+        }
+    }
+
+        /**
+     * @return le panel du nombre de personnages
+     */
+    private void nbIA(){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Nombre d'ordinateurs adverses");
+        alert.setHeaderText("Choisissez le nombre d'ordinateurs adverses");
+
+        ButtonType boutonChoixUn = new ButtonType("1 ordinateur adverse");
+        ButtonType boutonChoixDeux = new ButtonType("2 ordinateurs adverses");
+        ButtonType boutonChoixTrois = new ButtonType("3 ordinateurs adverses");
+
+        alert.getButtonTypes().setAll(boutonChoixUn, boutonChoixDeux, boutonChoixTrois);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == boutonChoixUn){
+            System.out.println("1 ordinateur adverse");
+        } else if (result.get() == boutonChoixDeux) {
+            System.out.println("2 ordinateurs adverses");
+        } else if (result.get() == boutonChoixTrois) {
+            System.out.println("3 ordinateurs adverses");
+        } else {
+            this.nbPersos();
+        }
     }
 
 
@@ -63,6 +158,10 @@ public class Monde extends Application{
     public void start(Stage stage) {
         stage.setTitle("Fantasy");
         stage.setScene(this.laScene());
+        this.nbParcelles();
+        this.nbPersos();
+        this.nbJoueurs();
+        this.nbIA();
         stage.show();
     }
 
