@@ -9,7 +9,7 @@ import javafx.scene.layout.*;
 
 import java.util.*;
 
-public class Monde {
+public class Monde extends Application{
 
     private ArrayList<Parcelle> parcelles;
     private ArrayList<IA> myIA;

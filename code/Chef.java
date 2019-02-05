@@ -1,15 +1,15 @@
 public class Chef implements IStrategie {
 
-  public void repondSollicitation();
+  public void repondSollicitation(){}
 
-  public void formeTribu();
+  public void formeTribu(){}
 
-  public void sollicite();
+  public void sollicite(){}
 
-  public void sEmancipe();
+  public void sEmancipe(){}
 
-  public void negocie(Elfe chef);
+  public void negocie(Elfe chef){}
 
-  public void devenirChef();
+  public void devenirChef(){}
 
 }

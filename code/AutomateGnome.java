@@ -1,13 +1,25 @@
 public class AutomateGnome implements IEventGnome {
 
-    private IEtatGnome etatCourant;
-      public Gnome controle;
+  private IEtatGnome etatCourant;
+  private Gnome controle;
 
   public Gnome getControle() {
-  return null;
+    return this.controle;
   }
 
   public void changerEtat(IEtatGnome etat) {
   }
+
+  public void deplacementElfe(){}
+
+  public void elfeRepondSollicitation(){}
+
+  public void efleFormeTribu(){}
+
+  public void efleSollicite(){}
+
+  public void elfeSEmancipe(){}
+
+  public void elfeNegocie(){}
 
 }
