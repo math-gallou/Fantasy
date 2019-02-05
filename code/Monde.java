@@ -8,13 +8,15 @@ import javafx.scene.layout.*;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
-
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.control.Label;
+import javafx.scene.shape.Rectangle;
 import java.util.*;
 
 public class Monde extends Application{
 
-    private ArrayList<Parcelle> parcelles;
+    private ArrayList<Parcelle> parcelles; 
     private ArrayList<IA> myIA;
 
     /**
@@ -33,12 +35,29 @@ public class Monde extends Application{
 
         Optional<ButtonType> result = alert.showAndWait();
 
+        this.parcelles = new ArrayList<Parcelle>();
+
         if (result.get() == boutonTrois){
             System.out.println("Choix 3x3");
+            for (int i = 0; i < 3; i++){
+                for (int j = 0; j < 3; j++){
+                    this.parcelles.add(new Parcelle(i, j));
+                }
+            }
         } else if (result.get() == boutonQuatre) {
             System.out.println("Choix 4x4");
+            for (int i = 0; i < 4; i++){
+                for (int j = 0; j < 4; j++){
+                    this.parcelles.add(new Parcelle(i, j));
+                }
+            }
         } else if (result.get() == boutonCinq) {
             System.out.println("Choix 5x5");
+            for (int i = 0; i < 5; i++){
+                for (int j = 0; j < 5; j++){
+                    this.parcelles.add(new Parcelle(i, j));
+                }
+            }
         } else {
             this.nbParcelles();
         }
@@ -125,12 +144,21 @@ public class Monde extends Application{
         }
     }
 
-
     /**
      * @return le panel central avec le plateau de jeu
      */
-    private VBox central(){
-        VBox res=new VBox(5);
+    private GridPane central(){
+        GridPane res=new GridPane();
+        for (int i = 0; i < Math.sqrt(this.parcelles.size()); i++){
+            for (int j = 0; j < Math.sqrt(this.parcelles.size()); j++){
+                Rectangle r = new Rectangle();
+                r.setWidth(200);
+                r.setHeight(200);
+                r.setFill(Color.RED);
+                r.setStroke(Color.BLACK);
+                res.add(r, i, j);
+            }
+        }
         return res;
     }
 
@@ -147,6 +175,7 @@ public class Monde extends Application{
      */
     private Scene laScene(){
         BorderPane cont = new BorderPane();
+        cont.setCenter(this.central());
         return new Scene(cont,700,800);
     }
 
@@ -156,12 +185,12 @@ public class Monde extends Application{
      */
     @Override
     public void start(Stage stage) {
-        stage.setTitle("Fantasy");
-        stage.setScene(this.laScene());
         this.nbParcelles();
         this.nbPersos();
         this.nbJoueurs();
         this.nbIA();
+        stage.setTitle("Fantasy");
+        stage.setScene(this.laScene());
         stage.show();
     }
 
