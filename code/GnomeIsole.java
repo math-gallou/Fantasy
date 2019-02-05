@@ -1,5 +1,7 @@
 public class GnomeIsole implements IEtatGnome {
 
+  public GnomeIsole(){}
+
   public void deplacementElfe(AutomateGnome automate){}
 
   public void elfeRepondSollicitation(AutomateGnome automate){}

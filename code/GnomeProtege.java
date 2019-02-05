@@ -1,5 +1,7 @@
 public class GnomeProtege implements IEtatGnome {
 
+  public GnomeProtege(){}
+
   public void deplacementElfe(AutomateGnome automate){}
 
   public void elfeRepondSollicitation(AutomateGnome automate){}

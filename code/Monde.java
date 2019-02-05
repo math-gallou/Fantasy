@@ -81,10 +81,13 @@ public class Monde extends Application{
 
         if (result.get() == boutonChoixUn){
             System.out.println("Choix 30 Gnomes et 10 Elfes");
+            this.repartirPersonnages(30,10);
         } else if (result.get() == boutonChoixDeux) {
             System.out.println("Choix 50 Gnomes et 15 Elfes");
+            this.repartirPersonnages(50,15);
         } else if (result.get() == boutonChoixTrois) {
             System.out.println("Choix 80 Gnomes et 20 Elfes");
+            this.repartirPersonnages(80,20);
         } else {
             this.nbPersos();
         }
@@ -141,6 +144,24 @@ public class Monde extends Application{
             System.out.println("3 ordinateurs adverses");
         } else {
             this.nbPersos();
+        }
+    }
+
+    /**
+     * Réparti les personnages dans les parcelles
+     */
+    private void repartirPersonnages(int nbGnomes, int nbElfes){
+        Random random = new Random();
+        int nb = (int) Math.sqrt(this.parcelles.size())+1;
+        for (int i = 0; i < nbGnomes ; i++){
+            int row = random.nextInt(nb);
+            int col = random.nextInt(nb);
+            this.parcelles.get(row + col).ajouterPerso(new Gnome());
+        }
+        for (int i = 0; i < nbElfes ; i++){
+            int row = random.nextInt(nb);
+            int col = random.nextInt(nb);
+            this.parcelles.get(row + col).ajouterPerso(new Elfe());
         }
     }
 

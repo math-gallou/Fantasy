@@ -1,6 +1,10 @@
-public abstract class Elfe extends Personnage {
+public class Elfe extends Personnage {
 
-      private IStrategie role;
+  private IStrategie role;
+
+  public Elfe(){
+    this.role = new Normal();
+  }
 
   public void seDeplacer() {
   }
@@ -24,6 +28,14 @@ public abstract class Elfe extends Personnage {
   }
 
   public void isChefSupreme() {
+  }
+
+  public boolean isElfe(){
+    return true;
+  }
+
+  public boolean isGnome(){
+    return false;
   }
 
 }

@@ -16,4 +16,12 @@ public class Parcelle {
     return this.personnages;
   }
 
+  public void ajouterPerso(Personnage p){
+    this.personnages.add(p);
+  }
+
+  public void enleverPerso(Personnage p){
+    this.personnages.remove(p);
+  }
+
 }

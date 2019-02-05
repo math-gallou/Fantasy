@@ -1,5 +1,7 @@
 public class GnomeVulnerable implements IEtatGnome {
 
+  public GnomeVulnerable(){}
+
   public void deplacementElfe(AutomateGnome automate){}
 
   public void elfeRepondSollicitation(AutomateGnome automate){}

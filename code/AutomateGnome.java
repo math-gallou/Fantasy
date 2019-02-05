@@ -3,6 +3,11 @@ public class AutomateGnome implements IEventGnome {
   private IEtatGnome etatCourant;
   private Gnome controle;
 
+  public AutomateGnome(Gnome controle){
+    this.controle = controle;
+    this.etatCourant = new GnomeVulnerable();
+  }
+
   public Gnome getControle() {
     return this.controle;
   }
