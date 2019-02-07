@@ -18,6 +18,7 @@ public class Monde extends Application{
 
     private ArrayList<Parcelle> parcelles; 
     private ArrayList<IA> myIA;
+    private GridPane central;
 
     /**
      * @return le panel du nombre de parcelles
@@ -156,12 +157,12 @@ public class Monde extends Application{
         for (int i = 0; i < nbGnomes ; i++){
             int row = random.nextInt(nb);
             int col = random.nextInt(nb);
-            this.parcelles.get(row + col).ajouterPerso(new Gnome());
+            this.parcelles.get(row + col).ajouterPerso(new Gnome(this.parcelles.get(row+col), String.valueOf(i)));
         }
         for (int i = 0; i < nbElfes ; i++){
             int row = random.nextInt(nb);
             int col = random.nextInt(nb);
-            this.parcelles.get(row + col).ajouterPerso(new Elfe());
+            this.parcelles.get(row + col).ajouterPerso(new Elfe(this.parcelles.get(row+col), String.valueOf(i)));
         }
     }
 
@@ -169,18 +170,14 @@ public class Monde extends Application{
      * @return le panel central avec le plateau de jeu
      */
     private GridPane central(){
-        GridPane res=new GridPane();
+        this.central = new GridPane();
         for (int i = 0; i < Math.sqrt(this.parcelles.size()); i++){
             for (int j = 0; j < Math.sqrt(this.parcelles.size()); j++){
-                Rectangle r = new Rectangle();
-                r.setWidth(200);
-                r.setHeight(200);
-                r.setFill(Color.RED);
-                r.setStroke(Color.BLACK);
-                res.add(r, i, j);
+                this.central.add(this.parcelles.get(i*(int)Math.sqrt(this.parcelles.size())+j).dessiner(), i, j);
+                this.parcelles.get(i*(int)Math.sqrt(this.parcelles.size())+j).dessinerPersonnages();
             }
         }
-        return res;
+        return this.central;
     }
 
     /**
