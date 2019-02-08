@@ -33,6 +33,8 @@ public class Monde extends Application{
     private Button emancipation;
     private Button negociation;
     private Personnage joueur;
+    private int index_parcelle;
+    private int index_elfe;
 
     /**
      * @return le panel du nombre de parcelles
@@ -221,6 +223,25 @@ public class Monde extends Application{
         return gauche;
     }
 
+    private Personnage getJoueur(){
+        this.joueur = null;
+        while (this.joueur == null){
+            int nbElfes = this.parcelles.get(index_parcelle).getElfes().size();
+            if (nbElfes != 0 && this.index_elfe < nbElfes){
+                joueur = this.parcelles.get(this.index_parcelle).getElfes().get(index_elfe);
+                this.index_elfe ++;
+            } else {
+                this.index_elfe = 0;
+                if (this.index_parcelle < this.parcelles.size()){
+                    this.index_parcelle ++;
+                } else {
+                    this.index_parcelle = 0;
+                }
+            }
+        }
+        return this.joueur;
+    }
+
     private VBox bas(){
         EventHandler<ActionEvent> eh = new ActionBouton(this);
         this.bas = new VBox(5);
@@ -228,14 +249,8 @@ public class Monde extends Application{
         HBox buttons1 = new HBox(5);
         HBox buttons2 = new HBox(5);
 
-        this.joueur = null;
-        int i = 0;
-        while (joueur == null){
-            if (this.parcelles.get(i).getElfes().size() != 0){
-                joueur = this.parcelles.get(i).getElfes().get(0);
-            }
-            i ++;
-        }
+        this.index_elfe = 0;
+        this.index_parcelle = 0;
 
         HBox label = new HBox(5);
         label.setAlignment(Pos.CENTER);
