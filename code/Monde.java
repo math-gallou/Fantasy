@@ -12,6 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.geometry.Insets;
 import java.util.*;
 
 public class Monde extends Application{
@@ -183,9 +185,28 @@ public class Monde extends Application{
     /**
      * @return le panel contenant le titre du jeu
      */
-    private FlowPane titre(){
-        FlowPane res = new FlowPane();
+    private HBox titre(){
+        HBox res = new HBox(5);
+        res.setPrefWidth(800);
+        res.setPrefHeight(20);
+        res.setPadding(new Insets(10, 50, 10, 10));
+        res.setAlignment(Pos.CENTER);
+        Label label = new Label("Fantasy");
+        label.setFont(new Font(30));
+        res.getChildren().add(label);
         return res;
+    }
+
+    private VBox droite(){
+        VBox droite = new VBox();
+        droite.setPrefWidth(50);
+        return droite;
+    }
+
+    private VBox gauche(){
+        VBox gauche = new VBox();
+        gauche.setPrefWidth(50);
+        return gauche;
     }
 
     /**
@@ -193,7 +214,12 @@ public class Monde extends Application{
      */
     private Scene laScene(){
         BorderPane cont = new BorderPane();
-        cont.setCenter(this.central());
+        GridPane centre = this.central();
+        centre.setAlignment(Pos.CENTER);
+        cont.setCenter(centre);
+        cont.setTop(this.titre());
+        cont.setRight(this.droite());
+        cont.setLeft(this.gauche());
         return new Scene(cont,700,800);
     }
 

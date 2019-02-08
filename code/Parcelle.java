@@ -22,8 +22,8 @@ public class Parcelle {
 
   public StackPane dessiner(){
     Rectangle r = new Rectangle();
-    r.setWidth(200);
-    r.setHeight(200);
+    r.setWidth(100);
+    r.setHeight(100);
     r.setFill(Color.RED);
     r.setStroke(Color.BLACK);
     this.dessin.getChildren().add(r);
