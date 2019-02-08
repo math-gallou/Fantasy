@@ -13,6 +13,10 @@ public class Parcelle {
   private ArrayList<Personnage> personnages;
   private StackPane dessin;
 
+  public Parcelle(){
+    
+  }
+
   public Parcelle(int col, int row){
     this.row = row;
     this.col = col;

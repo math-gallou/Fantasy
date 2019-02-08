@@ -10,7 +10,7 @@ public class ActionBouton implements EventHandler<ActionEvent> {
 
     public ActionBouton(Monde m){
         this.m = m;
-        this.joueur = joueur;
+        this.joueur = m.getJoueur();
     }
 
     @Override
@@ -20,6 +20,7 @@ public class ActionBouton implements EventHandler<ActionEvent> {
         switch (texte){
             case "Se déplacer":
                     System.out.println("Se déplacer");
+                    this.joueur.seDeplacer(this.m);
                     break;
             case "Répondre à une sollicitation":
                     System.out.println("Répondre à une sollicitation");

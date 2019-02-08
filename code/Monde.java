@@ -36,6 +36,10 @@ public class Monde extends Application{
     private int index_parcelle;
     private int index_elfe;
 
+
+    public ArrayList<Parcelle> getParcelles(){
+        return this.parcelles;
+    }
     /**
      * @return le panel du nombre de parcelles
      */
@@ -223,12 +227,16 @@ public class Monde extends Application{
         return gauche;
     }
 
-    private Personnage getJoueur(){
+    public Elfe getJoueur(){
+        return (Elfe)this.joueur;
+    }
+
+    public Personnage getNouveauJoueur(){
         this.joueur = null;
         while (this.joueur == null){
             int nbElfes = this.parcelles.get(index_parcelle).getElfes().size();
             if (nbElfes != 0 && this.index_elfe < nbElfes){
-                joueur = this.parcelles.get(this.index_parcelle).getElfes().get(index_elfe);
+                this.joueur = this.parcelles.get(this.index_parcelle).getElfes().get(index_elfe);
                 this.index_elfe ++;
             } else {
                 this.index_elfe = 0;
@@ -243,6 +251,12 @@ public class Monde extends Application{
     }
 
     private VBox bas(){
+        HBox label = new HBox(5);
+        label.setAlignment(Pos.CENTER);
+        this.tour = new Label("C'est le tour de " + this.getNouveauJoueur());
+        this.tour.setFont(new Font(15));
+        label.getChildren().add(this.tour);
+
         EventHandler<ActionEvent> eh = new ActionBouton(this);
         this.bas = new VBox(5);
         this.bas.setPadding(new Insets(10,10,10,10));
@@ -251,12 +265,6 @@ public class Monde extends Application{
 
         this.index_elfe = 0;
         this.index_parcelle = 0;
-
-        HBox label = new HBox(5);
-        label.setAlignment(Pos.CENTER);
-        this.tour = new Label("C'est le tour de " + this.getJoueur());
-        this.tour.setFont(new Font(15));
-        label.getChildren().add(this.tour);
 
         this.deplacement = new Button("Se déplacer");
         this.deplacement.setOnAction(eh);
