@@ -8,7 +8,7 @@ public class ActionBouton implements EventHandler<ActionEvent> {
     private Monde m;
     private Elfe joueur;
 
-    public ActionBouton(Monde m, Elfe joueur){
+    public ActionBouton(Monde m){
         this.m = m;
         this.joueur = joueur;
     }

@@ -49,4 +49,8 @@ public class Elfe extends Personnage {
     return false;
   }
 
+  public String toString(){
+    return "l'elfe "+this.nom;
+  }
+
 }

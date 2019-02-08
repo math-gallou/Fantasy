@@ -32,6 +32,7 @@ public class Monde extends Application{
     private Button sollicitation;
     private Button emancipation;
     private Button negociation;
+    private Personnage joueur;
 
     /**
      * @return le panel du nombre de parcelles
@@ -221,15 +222,24 @@ public class Monde extends Application{
     }
 
     private VBox bas(){
-        EventHandler<ActionEvent> eh = new ActionBouton(this, new Elfe());
+        EventHandler<ActionEvent> eh = new ActionBouton(this);
         this.bas = new VBox(5);
         this.bas.setPadding(new Insets(10,10,10,10));
         HBox buttons1 = new HBox(5);
         HBox buttons2 = new HBox(5);
 
+        this.joueur = null;
+        int i = 0;
+        while (joueur == null){
+            if (this.parcelles.get(i).getElfes().size() != 0){
+                joueur = this.parcelles.get(i).getElfes().get(0);
+            }
+            i ++;
+        }
+
         HBox label = new HBox(5);
         label.setAlignment(Pos.CENTER);
-        this.tour = new Label("C'est le tour de ");
+        this.tour = new Label("C'est le tour de " + joueur);
         this.tour.setFont(new Font(15));
         label.getChildren().add(this.tour);
 
