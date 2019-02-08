@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.control.Button;
 import javafx.geometry.Insets;
 import java.util.*;
 
@@ -21,6 +22,14 @@ public class Monde extends Application{
     private ArrayList<Parcelle> parcelles; 
     private ArrayList<IA> myIA;
     private GridPane central;
+    private VBox bas;
+    private Label tour;
+    private Button deplacement;
+    private Button reponse;
+    private Button formation;
+    private Button sollicitation;
+    private Button emancipation;
+    private Button negociation;
 
     /**
      * @return le panel du nombre de parcelles
@@ -209,6 +218,32 @@ public class Monde extends Application{
         return gauche;
     }
 
+    private VBox bas(){
+        this.bas = new VBox(5);
+        this.bas.setPadding(new Insets(10,10,10,10));
+        HBox buttons1 = new HBox(5);
+        HBox buttons2 = new HBox(5);
+
+        HBox label = new HBox(5);
+        label.setAlignment(Pos.CENTER);
+        this.tour = new Label("C'est le tour de ");
+        this.tour.setFont(new Font(15));
+        label.getChildren().add(this.tour);
+
+        this.deplacement = new Button("Se déplacer");
+        this.reponse = new Button("Répondre à une sollicitation");
+        this.formation = new Button("Former sa tribu");
+        this.sollicitation = new Button("Solliciter un chef");
+        this.emancipation = new Button("S'émanciper");
+        this.negociation = new Button("Négociation");
+        buttons1.getChildren().addAll(deplacement, reponse, formation);
+        buttons1.setAlignment(Pos.CENTER);
+        buttons2.getChildren().addAll(sollicitation, emancipation, negociation);
+        buttons2.setAlignment(Pos.CENTER);
+        this.bas.getChildren().addAll(label, buttons1, buttons2);
+        return this.bas;
+    }
+
     /**
      * @return  le graphe de scène de la vue à partir de methodes précédentes
      */
@@ -220,6 +255,7 @@ public class Monde extends Application{
         cont.setTop(this.titre());
         cont.setRight(this.droite());
         cont.setLeft(this.gauche());
+        cont.setBottom(this.bas());
         return new Scene(cont,700,800);
     }
 
