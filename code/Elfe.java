@@ -35,7 +35,7 @@ public class Elfe extends Personnage {
   }
 
   public void seDeplacer(Monde m) {
-    this.choisirDeplacement(m);
+    this.parcelle = this.choisirDeplacement(m);
   }
 
   public void repondSollicitation() {
@@ -72,28 +72,56 @@ public class Elfe extends Personnage {
   }
 
   public Parcelle choisirDeplacement(Monde m){
+    Parcelle p_res = null;
     Alert alert = new Alert(AlertType.CONFIRMATION);
     alert.setTitle("Déplacement");
     alert.setHeaderText("Choisissez la nouvelle parcelle");
+
+    Parcelle pgauche = null;
+    Parcelle pdroit = null;
+    Parcelle pbas = null;
+    Parcelle phaut = null;
 
     ButtonType gauche = new ButtonType("La parcelle de gauche");
     ButtonType droite = new ButtonType("La parcelle de droite");
     ButtonType haut = new ButtonType("La parcelle du haut");
     ButtonType bas = new ButtonType("La parcelle du bas");
 
-    alert.getButtonTypes().setAll(gauche, droite, haut, bas);
+    ArrayList<ButtonType> choix = new ArrayList<>();
+
+    for (Parcelle p : m.getParcelles()){
+      if (this.parcelle.isAGauche(p)){
+        pgauche = p;
+        choix.add(gauche);
+      } else if (this.parcelle.isADroite(p)){
+        pdroit = p;
+        choix.add(droite);
+      } else if (this.parcelle.isENHaut(p)){
+        phaut = p;
+        choix.add(haut);
+      } else if (this.parcelle.isEnBas(p)){
+        pbas = p;
+        choix.add(bas);
+      }
+    }
+
+    alert.getButtonTypes().setAll(choix);
 
     Optional<ButtonType> result = alert.showAndWait();
     if (result.get() == gauche){
       System.out.println("La parcelle de gauche");
+      p_res = pgauche;
     } else if (result.get() == droite) {
       System.out.println("La parcelle de droite");
+      p_res = pdroit;
     } else if (result.get() == haut) {
       System.out.println("La parcelle du haut");
+      p_res = phaut;
     } else if (result.get() == bas){
       System.out.println("La parcelle du bas");
+      p_res = pbas;
     }
-    return new Parcelle();
+    return p_res;
   }
 
 }

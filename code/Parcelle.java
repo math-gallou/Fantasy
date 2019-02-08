@@ -14,7 +14,7 @@ public class Parcelle {
   private StackPane dessin;
 
   public Parcelle(){
-    
+
   }
 
   public Parcelle(int col, int row){
@@ -71,6 +71,22 @@ public class Parcelle {
       }
     }
     return res;
+  }
+
+  public boolean isAGauche(Parcelle p){
+    return true;
+  }
+
+  public boolean isADroite(Parcelle p){
+    return true;
+  }
+
+  public boolean isENHaut(Parcelle p){
+    return true;
+  }
+
+  public boolean isEnBas(Parcelle p){
+    return true;
   }
 
 }
