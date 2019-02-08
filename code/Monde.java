@@ -254,7 +254,7 @@ public class Monde extends Application{
 
         HBox label = new HBox(5);
         label.setAlignment(Pos.CENTER);
-        this.tour = new Label("C'est le tour de " + joueur);
+        this.tour = new Label("C'est le tour de " + this.getJoueur());
         this.tour.setFont(new Font(15));
         label.getChildren().add(this.tour);
 
@@ -270,10 +270,12 @@ public class Monde extends Application{
         this.emancipation.setOnAction(eh);
         this.negociation = new Button("Négociation");
         this.negociation.setOnAction(eh);
+
         buttons1.getChildren().addAll(deplacement, reponse, formation);
         buttons1.setAlignment(Pos.CENTER);
         buttons2.getChildren().addAll(sollicitation, emancipation, negociation);
         buttons2.setAlignment(Pos.CENTER);
+        
         this.bas.getChildren().addAll(label, buttons1, buttons2);
         return this.bas;
     }
