@@ -1,6 +1,9 @@
 public abstract class Element {
 
-  public void agir() {
-  }
+  public abstract boolean isElfe();
+
+  public abstract boolean isGnome();
+
+  public abstract boolean isTribu();
 
 }

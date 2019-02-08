@@ -35,5 +35,5 @@ public class Gnome extends Personnage {
   public boolean isGnome(){
     return true;
   }
-
+  
 }
