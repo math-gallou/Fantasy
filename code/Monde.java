@@ -15,6 +15,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.control.Button;
 import javafx.geometry.Insets;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import java.util.*;
 
 public class Monde extends Application{
@@ -219,6 +221,7 @@ public class Monde extends Application{
     }
 
     private VBox bas(){
+        EventHandler<ActionEvent> eh = new ActionBouton(this, new Elfe());
         this.bas = new VBox(5);
         this.bas.setPadding(new Insets(10,10,10,10));
         HBox buttons1 = new HBox(5);
@@ -231,11 +234,17 @@ public class Monde extends Application{
         label.getChildren().add(this.tour);
 
         this.deplacement = new Button("Se déplacer");
+        this.deplacement.setOnAction(eh);
         this.reponse = new Button("Répondre à une sollicitation");
+        this.reponse.setOnAction(eh);
         this.formation = new Button("Former sa tribu");
+        this.formation.setOnAction(eh);
         this.sollicitation = new Button("Solliciter un chef");
+        this.sollicitation.setOnAction(eh);
         this.emancipation = new Button("S'émanciper");
+        this.emancipation.setOnAction(eh);
         this.negociation = new Button("Négociation");
+        this.negociation.setOnAction(eh);
         buttons1.getChildren().addAll(deplacement, reponse, formation);
         buttons1.setAlignment(Pos.CENTER);
         buttons2.getChildren().addAll(sollicitation, emancipation, negociation);

@@ -5,6 +5,8 @@ public class Elfe extends Personnage {
 
   private IStrategie role;
 
+  public Elfe(){}
+
   public Elfe(Parcelle p, String name){
     this.parcelle = p;
     this.nom = name;
