@@ -87,25 +87,26 @@ public class Elfe extends Personnage {
     ButtonType haut = new ButtonType("La parcelle du haut");
     ButtonType bas = new ButtonType("La parcelle du bas");
 
-    ArrayList<ButtonType> choix = new ArrayList<>();
+    alert.getButtonTypes().setAll(gauche, droite, haut, bas);
 
+    System.out.println(this);
     for (Parcelle p : m.getParcelles()){
+      System.out.println(p);
+      System.out.println(this.parcelle); // élément null ??
       if (this.parcelle.isAGauche(p)){
         pgauche = p;
-        choix.add(gauche);
+        alert.getDialogPane().lookupButton(gauche).setDisable(true);
       } else if (this.parcelle.isADroite(p)){
         pdroit = p;
-        choix.add(droite);
-      } else if (this.parcelle.isENHaut(p)){
+        alert.getDialogPane().lookupButton(droite).setDisable(true);
+      } else if (this.parcelle.isEnHaut(p)){
         phaut = p;
-        choix.add(haut);
+        alert.getDialogPane().lookupButton(haut).setDisable(true);
       } else if (this.parcelle.isEnBas(p)){
         pbas = p;
-        choix.add(bas);
+        alert.getDialogPane().lookupButton(bas).setDisable(true);
       }
     }
-
-    alert.getButtonTypes().setAll(choix);
 
     Optional<ButtonType> result = alert.showAndWait();
     if (result.get() == gauche){

@@ -81,7 +81,7 @@ public class Parcelle {
     return true;
   }
 
-  public boolean isENHaut(Parcelle p){
+  public boolean isEnHaut(Parcelle p){
     return true;
   }
 
