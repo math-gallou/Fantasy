@@ -41,5 +41,8 @@ public class ActionBouton implements EventHandler<ActionEvent> {
                     System.out.println("Action par défault ");
                     break;        
         }
+        this.joueur = (Elfe)this.m.getNouveauJoueur();
+        this.m.setJoueur(this.joueur);
+        this.m.updateLabel();
     }
 }

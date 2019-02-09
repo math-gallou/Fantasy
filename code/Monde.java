@@ -33,8 +33,8 @@ public class Monde extends Application{
     private Button emancipation;
     private Button negociation;
     private Personnage joueur;
-    private int index_parcelle;
     private int index_elfe;
+    private ArrayList<Personnage> personnages;
 
 
     public ArrayList<Parcelle> getParcelles(){
@@ -172,17 +172,22 @@ public class Monde extends Application{
      * Réparti les personnages dans les parcelles
      */
     private void repartirPersonnages(int nbGnomes, int nbElfes){
+        this.personnages = new ArrayList<>();
         Random random = new Random();
         int nb = (int) Math.sqrt(this.parcelles.size())+1;
         for (int i = 0; i < nbGnomes ; i++){
             int row = random.nextInt(nb);
             int col = random.nextInt(nb);
-            this.parcelles.get(row + col).ajouterPerso(new Gnome(this.parcelles.get(row+col), String.valueOf(i)));
+            Gnome gnome = new Gnome(this.parcelles.get(row+col), String.valueOf(i));
+            this.parcelles.get(row + col).ajouterPerso(gnome);
+            this.personnages.add(gnome);
         }
         for (int i = 0; i < nbElfes ; i++){
             int row = random.nextInt(nb);
             int col = random.nextInt(nb);
-            this.parcelles.get(row + col).ajouterPerso(new Elfe(this.parcelles.get(row+col), String.valueOf(i)));
+            Elfe elfe = new Elfe(this.parcelles.get(row+col), String.valueOf(i));
+            this.parcelles.get(row + col).ajouterPerso(elfe);
+            this.personnages.add(elfe);
         }
     }
 
@@ -231,26 +236,30 @@ public class Monde extends Application{
         return (Elfe)this.joueur;
     }
 
+    public void setJoueur(Personnage joueur){
+        this.joueur = joueur;
+    }
+
     public Personnage getNouveauJoueur(){
         this.joueur = null;
         while (this.joueur == null){
-            int nbElfes = this.parcelles.get(index_parcelle).getElfes().size();
-            if (nbElfes != 0 && this.index_elfe < nbElfes){
-                this.joueur = this.parcelles.get(this.index_parcelle).getElfes().get(index_elfe);
+            if (this.index_elfe < this.personnages.size()){
+                if (this.personnages.get(this.index_elfe).isElfe())
+                    this.joueur = this.personnages.get(this.index_elfe);
                 this.index_elfe ++;
             } else {
                 this.index_elfe = 0;
-                if (this.index_parcelle < this.parcelles.size()){
-                    this.index_parcelle ++;
-                } else {
-                    this.index_parcelle = 0;
-                }
             }
         }
         return this.joueur;
     }
 
+    public void updateLabel(){
+        this.tour.setText("C'est le tour de " + this.joueur);
+    }
+
     private VBox bas(){
+        this.index_elfe = 0;
         HBox label = new HBox(5);
         label.setAlignment(Pos.CENTER);
         this.tour = new Label("C'est le tour de " + this.getNouveauJoueur());
@@ -262,9 +271,6 @@ public class Monde extends Application{
         this.bas.setPadding(new Insets(10,10,10,10));
         HBox buttons1 = new HBox(5);
         HBox buttons2 = new HBox(5);
-
-        this.index_elfe = 0;
-        this.index_parcelle = 0;
 
         this.deplacement = new Button("Se déplacer");
         this.deplacement.setOnAction(eh);

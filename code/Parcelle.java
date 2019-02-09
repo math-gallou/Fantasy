@@ -103,7 +103,6 @@ public class Parcelle {
   }
 
   public boolean restePlace(){
-    System.out.println(this + " " + this.nbPlaces);
     return this.nbPlaces - this.personnages.size() > 0;
   }
 }
