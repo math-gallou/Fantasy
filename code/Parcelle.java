@@ -13,10 +13,6 @@ public class Parcelle {
   private ArrayList<Personnage> personnages;
   private StackPane dessin;
 
-  public Parcelle(){
-
-  }
-
   public Parcelle(int col, int row){
     this.row = row;
     this.col = col;
@@ -75,19 +71,19 @@ public class Parcelle {
   }
 
   public boolean isAGauche(Parcelle p){
-    return (this.row == p.getRow()) && (this.col - p.getCol() == 1);
+    return (this.row == p.getRow()) && (this.col - p.getCol() == 1) && this.restePlace();
   }
 
   public boolean isADroite(Parcelle p){
-    return (this.row == p.getRow()) && (p.getCol() - this.col == 1);
+    return (this.row == p.getRow()) && (p.getCol() - this.col == 1) && this.restePlace();
   }
 
   public boolean isEnHaut(Parcelle p){
-    return (this.col == p.getCol()) && (this.row - p.getRow() == 1);
+    return (this.col == p.getCol()) && (this.row - p.getRow() == 1) && this.restePlace();
   }
 
   public boolean isEnBas(Parcelle p){
-    return (this.col == p.getCol()) && (p.getRow() - this.row == 1);
+    return (this.col == p.getCol()) && (p.getRow() - this.row == 1) && this.restePlace();
   }
 
   public int getRow(){
@@ -106,4 +102,8 @@ public class Parcelle {
     return "la passerelle l"+this.row+" col"+this.col;
   }
 
+  public boolean restePlace(){
+    System.out.println(this + " " + this.nbPlaces);
+    return this.nbPlaces - this.personnages.size() > 0;
+  }
 }
