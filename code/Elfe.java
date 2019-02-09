@@ -88,23 +88,24 @@ public class Elfe extends Personnage {
     ButtonType bas = new ButtonType("La parcelle du bas");
 
     alert.getButtonTypes().setAll(gauche, droite, haut, bas);
+    alert.getDialogPane().lookupButton(gauche).setDisable(true);
+    alert.getDialogPane().lookupButton(droite).setDisable(true);
+    alert.getDialogPane().lookupButton(haut).setDisable(true);
+    alert.getDialogPane().lookupButton(bas).setDisable(true);
 
-    System.out.println(this);
     for (Parcelle p : m.getParcelles()){
-      System.out.println(p);
-      System.out.println(this.parcelle); // élément null ??
       if (this.parcelle.isAGauche(p)){
         pgauche = p;
-        alert.getDialogPane().lookupButton(gauche).setDisable(true);
+        alert.getDialogPane().lookupButton(gauche).setDisable(false);
       } else if (this.parcelle.isADroite(p)){
         pdroit = p;
-        alert.getDialogPane().lookupButton(droite).setDisable(true);
+        alert.getDialogPane().lookupButton(droite).setDisable(false);
       } else if (this.parcelle.isEnHaut(p)){
         phaut = p;
-        alert.getDialogPane().lookupButton(haut).setDisable(true);
+        alert.getDialogPane().lookupButton(haut).setDisable(false);
       } else if (this.parcelle.isEnBas(p)){
         pbas = p;
-        alert.getDialogPane().lookupButton(bas).setDisable(true);
+        alert.getDialogPane().lookupButton(bas).setDisable(false);
       }
     }
 

@@ -22,6 +22,7 @@ public class Parcelle {
     this.col = col;
     this.personnages = new ArrayList<Personnage>();
     this.dessin = new StackPane();
+    this.nbPlaces = 10;
   }
 
   public StackPane dessiner(){
@@ -74,19 +75,35 @@ public class Parcelle {
   }
 
   public boolean isAGauche(Parcelle p){
-    return true;
+    return (this.row == p.getRow()) && (this.col - p.getCol() == 1);
   }
 
   public boolean isADroite(Parcelle p){
-    return true;
+    return (this.row == p.getRow()) && (p.getCol() - this.col == 1);
   }
 
   public boolean isEnHaut(Parcelle p){
-    return true;
+    return (this.col == p.getCol()) && (this.row - p.getRow() == 1);
   }
 
   public boolean isEnBas(Parcelle p){
-    return true;
+    return (this.col == p.getCol()) && (p.getRow() - this.row == 1);
+  }
+
+  public int getRow(){
+    return this.row;
+  }
+
+  public int getCol(){
+    return this.col;
+  }
+
+  public int getNbPlaces(){
+    return this.nbPlaces;
+  }
+
+  public String toString(){
+    return "la passerelle l"+this.row+" col"+this.col;
   }
 
 }
