@@ -36,6 +36,7 @@ public class Elfe extends Personnage {
 
   public void seDeplacer(Monde m) {
     this.parcelle = this.choisirDeplacement(m);
+    this.parcelle.ajouterPerso(this);
   }
 
   public void repondSollicitation() {

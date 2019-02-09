@@ -44,5 +44,6 @@ public class ActionBouton implements EventHandler<ActionEvent> {
         this.joueur = (Elfe)this.m.getNouveauJoueur();
         this.m.setJoueur(this.joueur);
         this.m.updateLabel();
+        this.m.actualiserAffichage();
     }
 }

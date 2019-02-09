@@ -1,6 +1,5 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,12 +8,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.control.Button;
-import javafx.geometry.Insets;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import java.util.*;
@@ -35,6 +31,7 @@ public class Monde extends Application{
     private Personnage joueur;
     private int index_elfe;
     private ArrayList<Personnage> personnages;
+    private BorderPane cont;
 
 
     public ArrayList<Parcelle> getParcelles(){
@@ -298,15 +295,19 @@ public class Monde extends Application{
      * @return  le graphe de scène de la vue à partir de methodes précédentes
      */
     private Scene laScene(){
-        BorderPane cont = new BorderPane();
+        this.cont = new BorderPane();
         GridPane centre = this.central();
         centre.setAlignment(Pos.CENTER);
-        cont.setCenter(centre);
-        cont.setTop(this.titre());
-        cont.setRight(this.droite());
-        cont.setLeft(this.gauche());
-        cont.setBottom(this.bas());
-        return new Scene(cont,700,800);
+        this.cont.setCenter(centre);
+        this.cont.setTop(this.titre());
+        this.cont.setRight(this.droite());
+        this.cont.setLeft(this.gauche());
+        this.cont.setBottom(this.bas());
+        return new Scene(this.cont,700,800);
+    }
+
+    public void actualiserAffichage(){
+        this.cont.setCenter(this.central());
     }
 
     /**
