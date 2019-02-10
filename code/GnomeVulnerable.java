@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Random;
+
 public class GnomeVulnerable implements IEtatGnome {
 
   public GnomeVulnerable(){}
@@ -26,7 +29,16 @@ public class GnomeVulnerable implements IEtatGnome {
 
   public void elfeFormeTribu(AutomateGnome automate){}
 
-  public void elfeSollicite(AutomateGnome automate){}
+  public void elfeSollicite(AutomateGnome automate, Tribu nouvelle_tribu, ArrayList<Parcelle> parcelles){
+    Random rand = new Random();
+    int choix = rand.nextInt(1);
+    if (choix == 1){
+      automate.getControle().deserterGnome(nouvelle_tribu);
+      automate.changerEtat(new GnomeProtege());
+    } else {
+      automate.getControle().fuirGnome(parcelles);
+    }
+  }
 
   public void elfeseSEmancipe(AutomateGnome automate){}
 

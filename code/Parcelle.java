@@ -184,4 +184,33 @@ public class Parcelle {
   public String toString(){
     return "P"+this.col+this.row+this.personnages;
   }
+
+  public boolean isACote(Parcelle p){
+    return this.isEnBas(p) || this.isEnHaut(p) || this.isADroite(p) || this.isAGauche(p);
+  }
+
+  public ArrayList<Parcelle> getVoisinsDispo(ArrayList<Parcelle> parcelles){
+    ArrayList<Parcelle> res = new ArrayList<>();
+    if (this.getBas(parcelles) != null){
+      if (this.getBas(parcelles).restePlace()){
+        res.add(this.getBas(parcelles));
+      }
+    }
+    if (this.getHaut(parcelles) != null){
+      if (this.getBas(parcelles).restePlace()){
+        res.add(this.getHaut(parcelles));
+      }
+    }
+    if (this.getDroite(parcelles) != null){
+      if (this.getDroite(parcelles).restePlace()){
+        res.add(this.getDroite(parcelles));
+      }
+    }
+    if (this.getGauche(parcelles) != null){
+      if (this.getGauche(parcelles).restePlace()){
+        res.add(this.getGauche(parcelles));
+      }
+    }
+    return res;
+  }
 }

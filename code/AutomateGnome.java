@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class AutomateGnome implements IEventGnome {
 
   private IEtatGnome etatCourant;
@@ -28,8 +30,8 @@ public class AutomateGnome implements IEventGnome {
     this.etatCourant.elfeFormeTribu(this);
   }
 
-  public void elfeSollicite(){
-    this.etatCourant.elfeSollicite(this);
+  public void elfeSollicite(Tribu nouvelle_tribu, ArrayList<Parcelle> parcelles){
+    this.etatCourant.elfeSollicite(this, nouvelle_tribu, parcelles);
   }
 
   public void elfeSEmancipe(){

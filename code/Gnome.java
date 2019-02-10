@@ -2,6 +2,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Gnome extends Personnage implements IEventGnome {
 
   public AutomateGnome controleur;
@@ -24,13 +27,31 @@ public class Gnome extends Personnage implements IEventGnome {
       return this.controleur;
   }
   
-  public void fuirGnome() {
+  public void fuirGnome(ArrayList<Parcelle> parcelles) {
+      Random rand = new Random();
+      ArrayList<Parcelle> voisins = this.parcelle.getVoisinsDispo(parcelles);
+      if (voisins.size() > 0){
+          int choix = rand.nextInt(voisins.size());
+          this.parcelle.enleverPerso(this);
+          voisins.get(choix).ajouterPerso(this);
+          this.setParcelle(voisins.get(choix));
+      }
+      System.out.println(this + " fuit en " + this.parcelle);
   }
 
-  public void deserterGnome() {
+  public void deserterGnome(Tribu nouvelle_tribu) {
+      System.out.println(this + " déserte " + this.tribu + " pour " + nouvelle_tribu);
+      this.tribu.enleverEnfant(this);
+      this.setTribu(nouvelle_tribu);
   }
 
   public void refugierGnome() {
+      if (this.tribu.getChef().getParcelle().isACote(this.parcelle)){
+          this.parcelle.enleverPerso(this);
+          this.tribu.getChef().getParcelle().ajouterPerso(this);
+          this.setParcelle(this.tribu.getChef().getParcelle());
+          System.out.println(this + " se réfugie en " + this.parcelle);
+      }
   }
 
   public boolean memeParcelleChef() {
@@ -53,13 +74,23 @@ public class Gnome extends Personnage implements IEventGnome {
       this.controleur.deplacementElfe();
   }
 
-  public void elfeRepondSollicitation(){}
+  public void elfeRepondSollicitation(){
+      this.controleur.elfeRepondSollicitation();
+  }
 
-  public void elfeFormeTribu(){}
+  public void elfeFormeTribu(){
+      this.controleur.elfeFormeTribu();
+  }
 
-  public void elfeSollicite(){}
+  public void elfeSollicite(Tribu nouvelle_tribu, ArrayList<Parcelle> parcelles){
+      this.controleur.elfeSollicite(nouvelle_tribu, parcelles);
+  }
 
-  public void elfeSEmancipe(){}
+  public void elfeSEmancipe(){
+      this.controleur.elfeSEmancipe();
+  }
 
-  public void elfeNegocie(){}
+  public void elfeNegocie(){
+      this.controleur.elfeNegocie();
+  }
 }

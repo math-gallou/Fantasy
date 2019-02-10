@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class GnomeIsole implements IEtatGnome {
 
   public GnomeIsole(){}
@@ -24,7 +26,10 @@ public class GnomeIsole implements IEtatGnome {
 
   public void elfeFormeTribu(AutomateGnome automate){}
 
-  public void elfeSollicite(AutomateGnome automate){}
+  public void elfeSollicite(AutomateGnome automate, Tribu nouvelle_tribu, ArrayList<Parcelle> parcelles){
+    automate.getControle().deserterGnome(nouvelle_tribu);
+    automate.changerEtat(new GnomeProtege());
+  }
 
   public void elfeseSEmancipe(AutomateGnome automate){}
 

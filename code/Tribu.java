@@ -41,6 +41,10 @@ public class Tribu extends Element {
     return this.enfantsDomines;
   }
 
+  public void enleverEnfant(Element enfant){
+    this.enfantsDomines.remove(enfant);
+  }
+
   public Elfe getChef() {
     return this.chef;
   }

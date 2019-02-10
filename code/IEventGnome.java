@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public interface IEventGnome {
 
   public void deplacementElfe();
@@ -6,7 +8,7 @@ public interface IEventGnome {
 
   public void elfeFormeTribu();
 
-  public void elfeSollicite();
+  public void elfeSollicite(Tribu nouvelle_tribu, ArrayList<Parcelle> parcelles);
 
   public void elfeSEmancipe();
 
