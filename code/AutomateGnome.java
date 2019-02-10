@@ -19,9 +19,9 @@ public class AutomateGnome implements IEventGnome {
 
   public void elfeRepondSollicitation(){}
 
-  public void efleFormeTribu(){}
+  public void elfeFormeTribu(){}
 
-  public void efleSollicite(){}
+  public void elfeSollicite(){}
 
   public void elfeSEmancipe(){}
 

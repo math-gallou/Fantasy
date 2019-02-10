@@ -10,7 +10,7 @@ public class GnomeIsole implements IEtatGnome {
 
   public void elfeSollicite(AutomateGnome automate){}
 
-  public void elseSEmancipe(AutomateGnome automate){}
+  public void elfeseSEmancipe(AutomateGnome automate){}
 
   public void elfeNegocie(AutomateGnome automate){}
 }

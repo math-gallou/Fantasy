@@ -109,6 +109,7 @@ public class Monde extends Application{
         } else {
             this.nbPersos();
         }
+        this.repartirTribu();
     }
 
         /**
@@ -179,7 +180,6 @@ public class Monde extends Application{
                 row = random.nextInt(nb);
                 col = random.nextInt(nb);
             }
-            System.out.println(col+" "+row);
             Elfe elfe = new Elfe(this.parcelles.get(col*nb + row), String.valueOf(i));
             this.parcelles.get(col*nb + row).ajouterPerso(elfe);
             this.personnages.add(elfe);
@@ -194,6 +194,18 @@ public class Monde extends Application{
             Gnome gnome = new Gnome(this.parcelles.get(col*nb + row), String.valueOf(i));
             this.parcelles.get(col*nb + row).ajouterPerso(gnome);
             this.personnages.add(gnome);
+        }
+    }
+
+    public void repartirTribu(){
+        for (Parcelle p : this.parcelles){
+            if (p.getElfes().size() > 0){
+                Random r = new Random();
+                int index_chef = r.nextInt(p.getElfes().size());
+                Elfe nouveau_chef = (Elfe) p.getElfes().get(index_chef);
+                nouveau_chef.devenirChef();
+                Tribu b = new Tribu(nouveau_chef, p.getGnomes());
+            }
         }
     }
 

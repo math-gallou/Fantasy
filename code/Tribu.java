@@ -9,9 +9,10 @@ public class Tribu extends Element {
   private ArrayList<Element> enfantsDomines;
   private Elfe chef;
 
-  public Tribu(Elfe chef){
+  public Tribu(Elfe chef, ArrayList<Personnage> premiers_domines){
     this.chef = chef;
     this.enfantsDomines = new ArrayList<>();
+    this.enfantsDomines.addAll(premiers_domines);
     this.name = String.valueOf(cpt);
     cpt ++;
   }
@@ -42,6 +43,10 @@ public class Tribu extends Element {
   }
 
   public void getGnomes() {
+  }
+
+  public String toString(){
+    return "tribu " + this.name + this.enfantsDomines;
   }
 
 }
