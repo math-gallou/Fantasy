@@ -303,7 +303,7 @@ public class Monde extends Application{
         this.cont.setRight(this.droite());
         this.cont.setLeft(this.gauche());
         this.cont.setBottom(this.bas());
-        return new Scene(this.cont,700,800);
+        return new Scene(this.cont,1200,1000);
     }
 
     public void actualiserAffichage(){

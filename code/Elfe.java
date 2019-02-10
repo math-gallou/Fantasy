@@ -30,8 +30,8 @@ public class Elfe extends Personnage {
     this.role = new Normal();
   }
 
-  public Shape dessiner(){
-    return new Rectangle();
+  public Shape dessiner(Color couleur){
+    return this.role.dessiner(couleur);
   }
 
   public void seDeplacer(Monde m) {

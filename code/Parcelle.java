@@ -23,8 +23,8 @@ public class Parcelle {
 
   public StackPane dessiner(){
     Rectangle r = new Rectangle();
-    r.setWidth(100);
-    r.setHeight(100);
+    r.setWidth(250);
+    r.setHeight(250);
     r.setFill(Color.RED);
     r.setStroke(Color.BLACK);
     this.dessin.getChildren().add(r);
@@ -104,5 +104,11 @@ public class Parcelle {
 
   public boolean restePlace(){
     return this.nbPlaces - this.personnages.size() > 0;
+  }
+
+  public void formerTribu(){
+    // on prend un elfe au hasard et il devient chef
+    // tout le reste rentre dans la tribu
+    //
   }
 }

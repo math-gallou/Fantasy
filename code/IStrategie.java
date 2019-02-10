@@ -1,3 +1,6 @@
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+
 public interface IStrategie {
   
   public void repondSollicitation();
@@ -12,4 +15,5 @@ public interface IStrategie {
 
   public void devenirChef();
 
+  public Circle dessiner(Color couleur);
 }

@@ -1,4 +1,5 @@
-import javafx.scene.shape.Circle;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public class Gnome extends Personnage {
@@ -11,8 +12,11 @@ public class Gnome extends Personnage {
     this.controleur = new AutomateGnome(this);
   }
 
-  public Shape dessiner(){
-    return new Circle();
+  public Shape dessiner(Color couleur){
+    Rectangle res = new Rectangle();
+    res.setHeight(5);
+    res.setWidth(5);
+    return res;
   }
   
   public void fuirGnome() {

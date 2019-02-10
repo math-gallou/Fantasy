@@ -1,3 +1,4 @@
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
 public abstract class Personnage extends Element {
@@ -6,7 +7,7 @@ public abstract class Personnage extends Element {
     protected Tribu tribu;
     protected Parcelle parcelle;
 
-    public abstract Shape dessiner();
+    public abstract Shape dessiner(Color couleur);
 
     public void agir() {
         
