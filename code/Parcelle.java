@@ -59,10 +59,24 @@ public class Parcelle {
 
   public void ajouterPerso(Personnage p){
     this.personnages.add(p);
+    if (p.getTribu()!=null && !this.tribus.contains(p.getTribu())){
+      this.tribus.add(p.getTribu());
+    }
   }
 
   public void enleverPerso(Personnage p){
     this.personnages.remove(p);
+    int i = 0;
+    boolean present = false;
+    while (i < this.personnages.size() && !present){
+      if (this.personnages.get(i).getTribu().equals(p.getTribu())){
+        present = true;
+      }
+      i++;
+    }
+    if (!present){
+      this.tribus.remove(p.getTribu());
+    }
   }
 
   public ArrayList<Personnage> getElfes(){
