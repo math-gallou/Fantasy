@@ -227,13 +227,27 @@ public class Monde extends Application{
     /**
      * permet d'activer ou désactiver les options
      * de jeu
-     * implémentés : déplacement
+     * implémentés : déplacement, sollicitation
      */
     public void activerBouton() {
         if(this.joueur.peutSeDeplacer(this.parcelles)){
             this.deplacement.setDisable(true);
         } else {
             this.deplacement.setDisable(false);
+        }
+
+        if (this.joueur.isChef()){
+            this.sollicitation.setDisable(false);
+            this.reponse.setDisable(false);
+            this.formation.setDisable(true);
+            this.emancipation.setDisable(false);
+            this.negociation.setDisable(false);
+        } else {
+            this.sollicitation.setDisable(true);
+            this.reponse.setDisable(true);
+            this.formation.setDisable(false);
+            this.emancipation.setDisable(true);
+            this.negociation.setDisable(true);
         }
     }
 
