@@ -1,17 +1,14 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
-import javafx.scene.control.Label;
 import javafx.scene.text.Font;
-import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import java.util.*;
@@ -208,17 +205,20 @@ public class Monde extends Application{
      */
     public void repartirTribu(){
         this.tribus = new ArrayList<>();
+        Random r = new Random();
         for (Parcelle p : this.parcelles){
             if (p.getElfes().size() > 0){
-                Random r = new Random();
                 int index_chef = r.nextInt(p.getElfes().size());
-                Elfe nouveau_chef = (Elfe) p.getElfes().get(index_chef);
+                Elfe nouveau_chef = p.getElfes().get(index_chef);
                 nouveau_chef.devenirChef();
                 Tribu b = new Tribu(nouveau_chef, p.getPerso());
                 p.ajouterTribu(b);
                 this.tribus.add(b);
                 for (Personnage perso : p.getPerso()){
                     perso.setTribu(b);
+                }
+                for (Gnome g : p.getGnomes()){
+                    g.getControleur().changerEtat(new GnomeProtege());
                 }
             }
         }
@@ -266,9 +266,8 @@ public class Monde extends Application{
     }
 
     /**
-     * permet de compléter le panneau de gauche
-     * NON IMPLEMENTE
-     * @return le panel de droite avec des infos sur les tribus
+     * n'affiche rien en particulier pour le moment
+     * @return
      */
     private VBox droite(){
         VBox droite = new VBox();
@@ -280,14 +279,16 @@ public class Monde extends Application{
      * début des infos sur les tribus
      * @return le panel de gauche avec des infos sur les tribus
      */
-    private VBox gauche(){
+    private ScrollPane gauche(){
+        ScrollPane spane = new ScrollPane();
         VBox gauche = new VBox();
         for (Parcelle p : this.parcelles){
             for (Tribu b : p.getTribus()){
                 gauche.getChildren().add(new Text(b.affichage()));
             }
         }
-        return gauche;
+        spane.setContent(gauche);
+        return spane;
     }
 
     /**

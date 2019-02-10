@@ -2,7 +2,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class Gnome extends Personnage {
+public class Gnome extends Personnage implements IEventGnome {
 
   public AutomateGnome controleur;
 
@@ -18,6 +18,10 @@ public class Gnome extends Personnage {
     res.setHeight(5);
     res.setWidth(5);
     return res;
+  }
+
+  public AutomateGnome getControleur(){
+      return this.controleur;
   }
   
   public void fuirGnome() {
@@ -44,5 +48,18 @@ public class Gnome extends Personnage {
   public String toString(){
     return "G"+this.nom;
   }
-  
+
+  public void deplacementElfe(){
+      this.controleur.deplacementElfe();
+  }
+
+  public void elfeRepondSollicitation(){}
+
+  public void elfeFormeTribu(){}
+
+  public void elfeSollicite(){}
+
+  public void elfeSEmancipe(){}
+
+  public void elfeNegocie(){}
 }

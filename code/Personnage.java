@@ -34,4 +34,9 @@ public abstract class Personnage extends Element {
     public Tribu getTribu(){
         return this.tribu;
     }
+
+    public Parcelle getParcelle(){
+        return this.parcelle;
+    }
+
 }

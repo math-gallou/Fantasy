@@ -19,7 +19,22 @@ public class ActionBouton implements EventHandler<ActionEvent> {
         switch (texte){
             case "Se déplacer":
                     System.out.println("Se déplacer");
+                    Parcelle ancienne = this.joueur.getParcelle();
                     this.joueur.seDeplacer(this.m);
+                    for (Gnome g : this.joueur.getParcelle().getGnomes()){
+                        if (g.hasTribu()){
+                            if (g.getTribu().equals(this.joueur.getTribu())){
+                                g.deplacementElfe();
+                            }
+                        }
+                    }
+                for (Gnome g : ancienne.getGnomes()){
+                    if (g.hasTribu()){
+                        if (g.getTribu().equals(this.joueur.getTribu())){
+                            g.deplacementElfe();
+                        }
+                    }
+                }
                     break;
             case "Répondre à une sollicitation":
                     System.out.println("Répondre à une sollicitation");

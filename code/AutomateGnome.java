@@ -13,18 +13,31 @@ public class AutomateGnome implements IEventGnome {
   }
 
   public void changerEtat(IEtatGnome etat) {
+    this.etatCourant = etat;
   }
 
-  public void deplacementElfe(){}
+  public void deplacementElfe(){
+    this.etatCourant.deplacementElfe(this);
+  }
 
-  public void elfeRepondSollicitation(){}
+  public void elfeRepondSollicitation(){
+    this.etatCourant.elfeRepondSollicitation(this);
+  }
 
-  public void elfeFormeTribu(){}
+  public void elfeFormeTribu(){
+    this.etatCourant.elfeFormeTribu(this);
+  }
 
-  public void elfeSollicite(){}
+  public void elfeSollicite(){
+    this.etatCourant.elfeSollicite(this);
+  }
 
-  public void elfeSEmancipe(){}
+  public void elfeSEmancipe(){
+    this.etatCourant.elfeseSEmancipe(this);
+  }
 
-  public void elfeNegocie(){}
+  public void elfeNegocie(){
+    this.etatCourant.elfeNegocie(this);
+  }
 
 }

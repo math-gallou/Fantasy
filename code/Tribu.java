@@ -112,4 +112,12 @@ public class Tribu extends Element {
     }
     return res;
   }
+
+  public String getName(){
+    return this.name;
+  }
+
+  public boolean equals(Tribu t){
+    return this.name.equals(t.getName());
+  }
 }

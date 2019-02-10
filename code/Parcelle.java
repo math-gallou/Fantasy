@@ -73,8 +73,10 @@ public class Parcelle {
     int i = 0;
     boolean present = false;
     while (i < this.personnages.size() && !present){
-      if (this.personnages.get(i).getTribu().equals(p.getTribu())){
-        present = true;
+      if (this.personnages.get(i).hasTribu()){
+        if (this.personnages.get(i).getTribu().equals(p.getTribu())){
+          present = true;
+        }
       }
       i++;
     }
@@ -83,21 +85,21 @@ public class Parcelle {
     }
   }
 
-  public ArrayList<Personnage> getElfes(){
-    ArrayList<Personnage> res = new ArrayList<>();
+  public ArrayList<Elfe> getElfes(){
+    ArrayList<Elfe> res = new ArrayList<>();
     for (Personnage p : this.personnages){
       if (p.isElfe()){
-        res.add(p);
+        res.add((Elfe) p);
       }
     }
     return res;
   }
 
-  public ArrayList<Personnage> getGnomes(){
-    ArrayList<Personnage> res = new ArrayList<>();
+  public ArrayList<Gnome> getGnomes(){
+    ArrayList<Gnome> res = new ArrayList<>();
     for (Personnage p : this.personnages){
       if (p.isGnome()){
-        res.add(p);
+        res.add((Gnome) p);
       }
     }
     return res;
