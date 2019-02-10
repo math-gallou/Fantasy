@@ -204,8 +204,11 @@ public class Monde extends Application{
                 int index_chef = r.nextInt(p.getElfes().size());
                 Elfe nouveau_chef = (Elfe) p.getElfes().get(index_chef);
                 nouveau_chef.devenirChef();
-                Tribu b = new Tribu(nouveau_chef, p.getGnomes());
+                Tribu b = new Tribu(nouveau_chef, p.getPerso());
                 p.ajouterTribu(b);
+                for (Personnage perso : p.getPerso()){
+                    perso.setTribu(b);
+                }
             }
         }
     }
@@ -218,7 +221,6 @@ public class Monde extends Application{
         for (int i = 0; i < Math.sqrt(this.parcelles.size()); i++){
             for (int j = 0; j < Math.sqrt(this.parcelles.size()); j++){
                 this.central.add(this.parcelles.get(i*(int)Math.sqrt(this.parcelles.size())+j).dessiner(), i, j);
-                this.parcelles.get(i*(int)Math.sqrt(this.parcelles.size())+j).dessinerPersonnages();
             }
         }
         return this.central;

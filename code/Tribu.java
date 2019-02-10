@@ -79,7 +79,11 @@ public class Tribu extends Element {
   }
 
   public String toString(){
-    return "tribu " + this.name + " chef " + this.chef + " contient " + this.getElfes() + " et " + this.getGnomes().size() + " gnomes";
+    return "T"+this.name;
+  }
+
+  public String affichage(){
+    return "tribu " + this.name + " chef elfe " + this.chef + "\nelfes " + this.getElfes() + "\n" + this.getGnomes().size() + " gnomes\ntribus " + this.getTribuesDominees();
   }
 
   public boolean isDominante(){
@@ -87,10 +91,7 @@ public class Tribu extends Element {
   }
 
   public Node dessiner(){
-    Text res = new Text();
-    String all = this.toString();
-    res.setText(all);
+    Text res = new Text(this.affichage());
     return res;
   }
-
 }

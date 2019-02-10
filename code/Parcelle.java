@@ -1,4 +1,5 @@
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -30,11 +31,26 @@ public class Parcelle {
     r.setFill(Color.RED);
     r.setStroke(Color.BLACK);
     this.dessin.getChildren().add(r);
+    VBox test = new VBox(5);
     for (Tribu b : this.tribus){
-      if (b.isDominante()){
-        this.dessin.getChildren().add(b.dessiner());
+      test.getChildren().add(b.dessiner());
+    }
+    Label seuls = new Label("elfes seuls [");
+    for (Personnage e : this.getElfes()){
+      if (!e.hasTribu()){
+        seuls.setText(seuls.getText()+e);
       }
     }
+    seuls.setText(seuls.getText()+"]");
+    int nbgnomes = 0;
+    for (Personnage e : this.getGnomes()){
+      if (!e.hasTribu()){
+        nbgnomes ++;
+      }
+    }
+    seuls.setText(seuls.getText()+" gnomes seuls : "+nbgnomes);
+    test.getChildren().add(seuls);
+    this.dessin.getChildren().add(test);
     return this.dessin;
   }
 

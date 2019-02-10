@@ -10,6 +10,7 @@ public class Gnome extends Personnage {
     this.nom = nom;
     this.setParcelle(p);
     this.controleur = new AutomateGnome(this);
+    this.tribu = null;
   }
 
   public Shape dessiner(Color couleur){
@@ -38,6 +39,10 @@ public class Gnome extends Personnage {
 
   public boolean isGnome(){
     return true;
+  }
+
+  public String toString(){
+    return "G"+this.nom;
   }
   
 }

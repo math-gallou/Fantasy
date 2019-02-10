@@ -13,6 +13,7 @@ public class Elfe extends Personnage {
     this.parcelle = p;
     this.nom = name;
     this.role = new Normal();
+    this.tribu = null;
   }
 
   public Shape dessiner(Color couleur){
@@ -20,6 +21,7 @@ public class Elfe extends Personnage {
   }
 
   public void seDeplacer(Monde m) {
+    this.parcelle.enleverPerso(this);
     this.parcelle = this.choisirDeplacement(m);
     this.parcelle.ajouterPerso(this);
   }
@@ -54,7 +56,7 @@ public class Elfe extends Personnage {
   }
 
   public String toString(){
-    return "l'elfe "+this.nom;
+    return "E"+this.nom;
   }
 
   public Parcelle choisirDeplacement(Monde m){

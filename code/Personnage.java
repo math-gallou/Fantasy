@@ -22,4 +22,8 @@ public abstract class Personnage extends Element {
     public boolean isTribu(){
         return false;
     }
+
+    public boolean hasTribu(){
+        return this.tribu!=null;
+    }
 }
