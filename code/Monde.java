@@ -38,12 +38,25 @@ public class Monde extends Application{
     private int nbIA;
     private int limite_parcelle;
 
+    // getter et setter
 
     public ArrayList<Parcelle> getParcelles(){
         return this.parcelles;
     }
+
+    public Elfe getJoueur(){
+        return (Elfe)this.joueur;
+    }
+
+    public void setJoueur(Personnage joueur){
+        this.joueur = (Elfe) joueur;
+    }
+
+    // fonctions
+
     /**
-     * @return le panel du nombre de parcelles
+     * permet de choisir le nombre de parcelles
+     * et de les créer
      */
     private void nbParcelles(){
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -81,7 +94,8 @@ public class Monde extends Application{
     }
 
     /**
-     * @return le panel du nombre de personnages
+     * permet de choisir le nombre de joueurs
+     * et d'IA
      */
     private void nbJoueurs(){
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -119,7 +133,8 @@ public class Monde extends Application{
     }
 
     /**
-     * @return le panel du nombre de personnages
+     * permet de créer les personnages
+     * de bases
      */
     private void nbPersos(){
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -186,6 +201,11 @@ public class Monde extends Application{
         }
     }
 
+    /**
+     * crée les premières tribus du jeu pour le lancer
+     * par défaut : on parcourt chaque parcelle et
+     * on prend un elfe au hasard pour créer une tribu
+     */
     public void repartirTribu(){
         this.tribus = new ArrayList<>();
         for (Parcelle p : this.parcelles){
@@ -204,6 +224,11 @@ public class Monde extends Application{
         }
     }
 
+    /**
+     * permet d'activer ou désactiver les options
+     * de jeu
+     * implémentés : déplacement
+     */
     public void activerBouton() {
         if(this.joueur.peutSeDeplacer(this.parcelles)){
             this.deplacement.setDisable(true);
@@ -240,12 +265,21 @@ public class Monde extends Application{
         return res;
     }
 
+    /**
+     * permet de compléter le panneau de gauche
+     * NON IMPLEMENTE
+     * @return le panel de droite avec des infos sur les tribus
+     */
     private VBox droite(){
         VBox droite = new VBox();
         droite.setPrefWidth(50);
         return droite;
     }
 
+    /**
+     * début des infos sur les tribus
+     * @return le panel de gauche avec des infos sur les tribus
+     */
     private VBox gauche(){
         VBox gauche = new VBox();
         for (Parcelle p : this.parcelles){
@@ -256,14 +290,9 @@ public class Monde extends Application{
         return gauche;
     }
 
-    public Elfe getJoueur(){
-        return (Elfe)this.joueur;
-    }
-
-    public void setJoueur(Personnage joueur){
-        this.joueur = (Elfe) joueur;
-    }
-
+    /**
+     * @return le prochain elfe qui doit jouer
+     */
     public Personnage getNouveauJoueur(){
         this.joueur = null;
         while (this.joueur == null){
@@ -278,10 +307,16 @@ public class Monde extends Application{
         return this.joueur;
     }
 
+    /**
+     * met à jour l'affichage de l'elfe qui joue
+     */
     public void updateLabel(){
         this.tour.setText("C'est le tour de " + this.joueur);
     }
 
+    /**
+     * @return le panel avec les boutons de jeu
+     */
     private VBox bas(){
         this.index_elfe = 0;
         HBox label = new HBox(5);
@@ -314,9 +349,20 @@ public class Monde extends Application{
         buttons1.setAlignment(Pos.CENTER);
         buttons2.getChildren().addAll(sollicitation, emancipation, negociation);
         buttons2.setAlignment(Pos.CENTER);
-        
+
         this.bas.getChildren().addAll(label, buttons1, buttons2);
         return this.bas;
+    }
+
+    /**
+     * met à jour l'affichage du panel et des boutons
+     * après un tour de jeu
+     */
+    public void actualiserAffichage(){
+        GridPane centre = this.central();
+        centre.setAlignment(Pos.CENTER);
+        this.cont.setCenter(centre);
+        this.activerBouton();
     }
 
     /**
@@ -332,13 +378,6 @@ public class Monde extends Application{
         this.cont.setLeft(this.gauche());
         this.cont.setBottom(this.bas());
         return new Scene(this.cont,1200,1000);
-    }
-
-    public void actualiserAffichage(){
-        GridPane centre = this.central();
-        centre.setAlignment(Pos.CENTER);
-        this.cont.setCenter(centre);
-        this.activerBouton();
     }
 
     /**
