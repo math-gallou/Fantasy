@@ -29,7 +29,7 @@ public class Monde extends Application{
     private Button sollicitation;
     private Button emancipation;
     private Button negociation;
-    private Personnage joueur;
+    private Elfe joueur;
     private int index_elfe;
     private ArrayList<Personnage> personnages;
     private BorderPane cont;
@@ -55,27 +55,27 @@ public class Monde extends Application{
 
         Optional<ButtonType> result = alert.showAndWait();
 
-        this.parcelles = new ArrayList<Parcelle>();
+        this.parcelles = new ArrayList<>();
 
         if (result.get() == boutonTrois){
             System.out.println("Choix 3x3");
             for (int i = 0; i < 3; i++){
                 for (int j = 0; j < 3; j++){
-                    this.parcelles.add(new Parcelle(i, j));
+                    this.parcelles.add(new Parcelle(j, i));
                 }
             }
         } else if (result.get() == boutonQuatre) {
             System.out.println("Choix 4x4");
             for (int i = 0; i < 4; i++){
                 for (int j = 0; j < 4; j++){
-                    this.parcelles.add(new Parcelle(i, j));
+                    this.parcelles.add(new Parcelle(j, i));
                 }
             }
         } else if (result.get() == boutonCinq) {
             System.out.println("Choix 5x5");
             for (int i = 0; i < 5; i++){
                 for (int j = 0; j < 5; j++){
-                    this.parcelles.add(new Parcelle(i, j));
+                    this.parcelles.add(new Parcelle(j, i));
                 }
             }
         } else {
@@ -178,23 +178,23 @@ public class Monde extends Application{
         for (int i = 0; i < nbElfes ; i++){
             int row = random.nextInt(nb);
             int col = random.nextInt(nb);
-            while(!this.parcelles.get(col*nb + row).restePlace()){
+            while(!this.parcelles.get(row*nb + col).restePlace()){
                 row = random.nextInt(nb);
                 col = random.nextInt(nb);
             }
-            Elfe elfe = new Elfe(this.parcelles.get(col*nb + row), String.valueOf(i));
-            this.parcelles.get(col*nb + row).ajouterPerso(elfe);
+            Elfe elfe = new Elfe(this.parcelles.get(row*nb + col), String.valueOf(i));
+            this.parcelles.get(row*nb + col).ajouterPerso(elfe);
             this.personnages.add(elfe);
         }
         for (int i = 0; i < nbGnomes ; i++){
             int row = random.nextInt(nb);
             int col = random.nextInt(nb);
-            while(!this.parcelles.get(col*nb + row).restePlace()){
+            while(!this.parcelles.get(row*nb + col).restePlace()){
                 row = random.nextInt(nb);
                 col = random.nextInt(nb);
             }
-            Gnome gnome = new Gnome(this.parcelles.get(col*nb + row), String.valueOf(i));
-            this.parcelles.get(col*nb + row).ajouterPerso(gnome);
+            Gnome gnome = new Gnome(this.parcelles.get(row*nb + col), String.valueOf(i));
+            this.parcelles.get(row*nb + col).ajouterPerso(gnome);
             this.personnages.add(gnome);
         }
     }
@@ -217,6 +217,14 @@ public class Monde extends Application{
         }
     }
 
+    public void activerBouton() {
+        if(this.joueur.peutSeDeplacer(this.parcelles)){
+            this.deplacement.setDisable(true);
+        } else {
+            this.deplacement.setDisable(false);
+        }
+    }
+
     /**
      * @return le panel central avec le plateau de jeu
      */
@@ -224,7 +232,7 @@ public class Monde extends Application{
         this.central = new GridPane();
         for (int i = 0; i < Math.sqrt(this.parcelles.size()); i++){
             for (int j = 0; j < Math.sqrt(this.parcelles.size()); j++){
-                this.central.add(this.parcelles.get(i*(int)Math.sqrt(this.parcelles.size())+j).dessiner(), i, j);
+                this.central.add(this.parcelles.get(j*(int)Math.sqrt(this.parcelles.size())+i).dessiner(), i, j);
             }
         }
         return this.central;
@@ -266,7 +274,7 @@ public class Monde extends Application{
     }
 
     public void setJoueur(Personnage joueur){
-        this.joueur = joueur;
+        this.joueur = (Elfe) joueur;
     }
 
     public Personnage getNouveauJoueur(){
@@ -274,7 +282,7 @@ public class Monde extends Application{
         while (this.joueur == null){
             if (this.index_elfe < this.personnages.size()){
                 if (this.personnages.get(this.index_elfe).isElfe())
-                    this.joueur = this.personnages.get(this.index_elfe);
+                    this.joueur = (Elfe) this.personnages.get(this.index_elfe);
                 this.index_elfe ++;
             } else {
                 this.index_elfe = 0;
@@ -313,6 +321,7 @@ public class Monde extends Application{
         this.emancipation.setOnAction(eh);
         this.negociation = new Button("Négociation");
         this.negociation.setOnAction(eh);
+        this.activerBouton();
 
         buttons1.getChildren().addAll(deplacement, reponse, formation);
         buttons1.setAlignment(Pos.CENTER);
@@ -342,6 +351,7 @@ public class Monde extends Application{
         GridPane centre = this.central();
         centre.setAlignment(Pos.CENTER);
         this.cont.setCenter(centre);
+        this.activerBouton();
     }
 
     /**

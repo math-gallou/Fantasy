@@ -127,10 +127,6 @@ public class Parcelle {
     return this.nbPlaces;
   }
 
-  public String toString(){
-    return "la passerelle l"+this.row+" col"+this.col;
-  }
-
   public boolean restePlace(){
     return this.nbPlaces - this.personnages.size() > 0;
   }
@@ -145,5 +141,41 @@ public class Parcelle {
 
   public boolean equals(Parcelle p){
     return p.getRow() == this.row && p.col == this.getCol();
+  }
+
+  public Parcelle getDroite(ArrayList<Parcelle> parcelles){
+    int nb = (int)Math.sqrt(parcelles.size());
+    if (this.col+1 <= nb-1){
+      return parcelles.get((this.col+1) + this.row*nb);
+    }
+    return null;
+  }
+
+  public Parcelle getGauche(ArrayList<Parcelle> parcelles){
+    int nb = (int)Math.sqrt(parcelles.size());
+    if (this.col-1 >= 0){
+      return parcelles.get((this.col - 1) + this.row*nb);
+    }
+    return null;
+  }
+
+  public Parcelle getHaut(ArrayList<Parcelle> parcelles){
+    int nb = (int)Math.sqrt(parcelles.size());
+    if (this.row-1 >= 0){
+      return parcelles.get((this.row-1)*nb + this.col);
+    }
+    return null;
+  }
+
+  public Parcelle getBas(ArrayList<Parcelle> parcelles){
+    int nb = (int)Math.sqrt(parcelles.size());
+    if (this.row + 1 < nb-1){
+      return parcelles.get((this.row + 1)*nb + this.col);
+    }
+    return null;
+  }
+
+  public String toString(){
+    return "P"+this.col+this.row+this.personnages;
   }
 }

@@ -65,36 +65,29 @@ public class Elfe extends Personnage {
     alert.setTitle("Déplacement");
     alert.setHeaderText("Choisissez la nouvelle parcelle");
 
-    Parcelle pgauche = null;
-    Parcelle pdroit = null;
-    Parcelle pbas = null;
-    Parcelle phaut = null;
+    Parcelle pgauche = this.parcelle.getGauche(m.getParcelles());
+    Parcelle pdroit = this.parcelle.getDroite(m.getParcelles());
+    Parcelle pbas = this.parcelle.getBas(m.getParcelles());
+    Parcelle phaut = this.parcelle.getHaut(m.getParcelles());
 
-    ButtonType gauche = new ButtonType("La parcelle de gauche");
-    ButtonType droite = new ButtonType("La parcelle de droite");
-    ButtonType haut = new ButtonType("La parcelle du haut");
-    ButtonType bas = new ButtonType("La parcelle du bas");
+    ButtonType gauche = new ButtonType("Aller gauche");
+    ButtonType droite = new ButtonType("Aller droite");
+    ButtonType haut = new ButtonType("Aller haut");
+    ButtonType bas = new ButtonType("Aller bas");
 
     alert.getButtonTypes().setAll(gauche, droite, haut, bas);
-    alert.getDialogPane().lookupButton(gauche).setDisable(true);
-    alert.getDialogPane().lookupButton(droite).setDisable(true);
-    alert.getDialogPane().lookupButton(haut).setDisable(true);
-    alert.getDialogPane().lookupButton(bas).setDisable(true);
 
-    for (Parcelle p : m.getParcelles()){
-      if (this.parcelle.isAGauche(p)){
-        pgauche = p;
-        alert.getDialogPane().lookupButton(gauche).setDisable(false);
-      } else if (this.parcelle.isADroite(p)){
-        pdroit = p;
-        alert.getDialogPane().lookupButton(droite).setDisable(false);
-      } else if (this.parcelle.isEnHaut(p)){
-        phaut = p;
-        alert.getDialogPane().lookupButton(haut).setDisable(false);
-      } else if (this.parcelle.isEnBas(p)){
-        pbas = p;
-        alert.getDialogPane().lookupButton(bas).setDisable(false);
-      }
+    if (pbas == null){
+      alert.getDialogPane().lookupButton(bas).setDisable(true);
+    }
+    if (pdroit == null){
+      alert.getDialogPane().lookupButton(droite).setDisable(true);
+    }
+    if (pgauche == null){
+      alert.getDialogPane().lookupButton(gauche).setDisable(true);
+    }
+    if (phaut == null){
+      alert.getDialogPane().lookupButton(haut).setDisable(true);
     }
 
     Optional<ButtonType> result = alert.showAndWait();
@@ -116,5 +109,49 @@ public class Elfe extends Personnage {
 
   public boolean isChef(){
     return this.role.isChef();
+  }
+
+  public Parcelle getParcelle(){
+    return this.parcelle;
+  }
+
+  public boolean peutSeDeplacerGauche(ArrayList<Parcelle> p){
+    if (this.parcelle.getGauche(p) != null){
+      if (this.parcelle.getGauche(p).restePlace()){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean peutSeDeplacerDroite(ArrayList<Parcelle> p){
+    if (this.parcelle.getDroite(p) != null){
+      if (this.parcelle.getDroite(p).restePlace()){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean peutSeDeplacerHaut(ArrayList<Parcelle> p){
+    if (this.parcelle.getHaut(p) != null){
+      if (this.parcelle.getHaut(p).restePlace()){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean peutSeDeplacerBas(ArrayList<Parcelle> p){
+    if (this.parcelle.getBas(p) != null){
+      if (this.parcelle.getBas(p).restePlace()){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean peutSeDeplacer(ArrayList<Parcelle> p){
+    return this.peutSeDeplacerBas(p) && this.peutSeDeplacerHaut(p) && this.peutSeDeplacerDroite(p) && this.peutSeDeplacerGauche(p);
   }
 }
