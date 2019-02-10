@@ -16,7 +16,7 @@ public class Parcelle {
   public Parcelle(int col, int row){
     this.row = row;
     this.col = col;
-    this.personnages = new ArrayList<Personnage>();
+    this.personnages = new ArrayList<>();
     this.dessin = new StackPane();
     this.nbPlaces = 10;
   }

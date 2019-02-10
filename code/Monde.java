@@ -138,7 +138,7 @@ public class Monde extends Application{
         }
     }
 
-        /**
+    /**
      * @return le panel du nombre de personnages
      */
     private void nbIA(){
@@ -171,20 +171,29 @@ public class Monde extends Application{
     private void repartirPersonnages(int nbGnomes, int nbElfes){
         this.personnages = new ArrayList<>();
         Random random = new Random();
-        int nb = (int) Math.sqrt(this.parcelles.size())+1;
-        for (int i = 0; i < nbGnomes ; i++){
-            int row = random.nextInt(nb);
-            int col = random.nextInt(nb);
-            Gnome gnome = new Gnome(this.parcelles.get(row+col), String.valueOf(i));
-            this.parcelles.get(row + col).ajouterPerso(gnome);
-            this.personnages.add(gnome);
-        }
+        int nb = (int) Math.sqrt(this.parcelles.size());
         for (int i = 0; i < nbElfes ; i++){
             int row = random.nextInt(nb);
             int col = random.nextInt(nb);
-            Elfe elfe = new Elfe(this.parcelles.get(row+col), String.valueOf(i));
-            this.parcelles.get(row + col).ajouterPerso(elfe);
+            while(!this.parcelles.get(col*nb + row).restePlace()){
+                row = random.nextInt(nb);
+                col = random.nextInt(nb);
+            }
+            System.out.println(col+" "+row);
+            Elfe elfe = new Elfe(this.parcelles.get(col*nb + row), String.valueOf(i));
+            this.parcelles.get(col*nb + row).ajouterPerso(elfe);
             this.personnages.add(elfe);
+        }
+        for (int i = 0; i < nbGnomes ; i++){
+            int row = random.nextInt(nb);
+            int col = random.nextInt(nb);
+            while(!this.parcelles.get(col*nb + row).restePlace()){
+                row = random.nextInt(nb);
+                col = random.nextInt(nb);
+            }
+            Gnome gnome = new Gnome(this.parcelles.get(col*nb + row), String.valueOf(i));
+            this.parcelles.get(col*nb + row).ajouterPerso(gnome);
+            this.personnages.add(gnome);
         }
     }
 
