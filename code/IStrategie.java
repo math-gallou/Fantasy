@@ -16,4 +16,6 @@ public interface IStrategie {
   public void devenirChef();
 
   public Circle dessiner(Color couleur);
+
+  public boolean isChef();
 }

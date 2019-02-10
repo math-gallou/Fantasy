@@ -12,6 +12,7 @@ public class Parcelle {
   private int nbPlaces;
   private ArrayList<Personnage> personnages;
   private StackPane dessin;
+  private ArrayList<Tribu> tribus;
 
   public Parcelle(int col, int row){
     this.row = row;
@@ -19,6 +20,7 @@ public class Parcelle {
     this.personnages = new ArrayList<>();
     this.dessin = new StackPane();
     this.nbPlaces = 10;
+    this.tribus = new ArrayList<>();
   }
 
   public StackPane dessiner(){
@@ -28,6 +30,11 @@ public class Parcelle {
     r.setFill(Color.RED);
     r.setStroke(Color.BLACK);
     this.dessin.getChildren().add(r);
+    for (Tribu b : this.tribus){
+      if (b.isDominante()){
+        this.dessin.getChildren().add(b.dessiner());
+      }
+    }
     return this.dessin;
   }
 
@@ -106,9 +113,7 @@ public class Parcelle {
     return this.nbPlaces - this.personnages.size() > 0;
   }
 
-  public void formerTribu(){
-    // on prend un elfe au hasard et il devient chef
-    // tout le reste rentre dans la tribu
-    //
+  public void ajouterTribu(Tribu a){
+    this.tribus.add(a);
   }
 }

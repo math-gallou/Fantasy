@@ -20,4 +20,8 @@ public class Normal implements IStrategie {
     res.setFill(couleur);
     return res;
   }
+
+  public boolean isChef(){
+    return false;
+  }
 }

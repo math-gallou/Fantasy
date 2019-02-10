@@ -9,9 +9,7 @@ public abstract class Personnage extends Element {
 
     public abstract Shape dessiner(Color couleur);
 
-    public void agir() {
-        
-    }
+    public void agir() { }
 
     public void setTribu(Tribu tribu){
         this.tribu = tribu;

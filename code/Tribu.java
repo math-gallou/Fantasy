@@ -1,3 +1,7 @@
+import javafx.scene.Node;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+
 import java.util.*;
 
 public class Tribu extends Element {
@@ -33,20 +37,60 @@ public class Tribu extends Element {
     this.enfantsDomines.add(enfant);
   }
   
-  public void getEnfants() {
+  public ArrayList<Element> getEnfants() {
+    return this.enfantsDomines;
   }
 
-  public void getChef() {
+  public Elfe getChef() {
+    return this.chef;
   }
 
-  public void getTribuesDominees() {
+  public ArrayList<Tribu> getTribuesDominees() {
+    ArrayList<Tribu> res = new ArrayList<>();
+    for (Element e : this.enfantsDomines){
+      if (e.isTribu()){
+        res.add((Tribu) e);
+      }
+    }
+    return res;
   }
 
-  public void getGnomes() {
+  public ArrayList<Gnome> getGnomes() {
+    ArrayList<Gnome> res = new ArrayList<>();
+    for (Element e : this.enfantsDomines){
+      if (e.isGnome()){
+        res.add((Gnome)e);
+      }
+    }
+    return res;
+  }
+
+  public ArrayList<Elfe> getElfes(){
+    ArrayList<Elfe> res = new ArrayList<>();
+    for (Element e : this.enfantsDomines){
+      if (e.isElfe()){
+        Elfe a = (Elfe) e;
+        if (!a.isChef()){
+          res.add(a);
+        }
+      }
+    }
+    return res;
   }
 
   public String toString(){
-    return "tribu " + this.name + this.enfantsDomines;
+    return "tribu " + this.name + " chef " + this.chef + " contient " + this.getElfes() + " et " + this.getGnomes().size() + " gnomes";
+  }
+
+  public boolean isDominante(){
+    return this.getTribuesDominees().size() == 0;
+  }
+
+  public Node dessiner(){
+    Text res = new Text();
+    String all = this.toString();
+    res.setText(all);
+    return res;
   }
 
 }

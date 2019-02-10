@@ -112,4 +112,7 @@ public class Elfe extends Personnage {
     return p_res;
   }
 
+  public boolean isChef(){
+    return this.role.isChef();
+  }
 }

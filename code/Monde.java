@@ -205,6 +205,7 @@ public class Monde extends Application{
                 Elfe nouveau_chef = (Elfe) p.getElfes().get(index_chef);
                 nouveau_chef.devenirChef();
                 Tribu b = new Tribu(nouveau_chef, p.getGnomes());
+                p.ajouterTribu(b);
             }
         }
     }

@@ -21,4 +21,8 @@ public class Chef implements IStrategie {
     return res;
   }
 
+  public boolean isChef(){
+    return true;
+  }
+
 }
