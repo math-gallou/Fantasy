@@ -26,4 +26,8 @@ public abstract class Personnage extends Element {
     public boolean hasTribu(){
         return this.tribu!=null;
     }
+
+    public boolean isSurParcelle(Parcelle p){
+        return this.parcelle.equals(p);
+    }
 }

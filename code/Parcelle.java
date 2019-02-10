@@ -31,34 +31,26 @@ public class Parcelle {
     r.setFill(Color.RED);
     r.setStroke(Color.BLACK);
     this.dessin.getChildren().add(r);
+
     VBox test = new VBox(5);
     for (Tribu b : this.tribus){
-      test.getChildren().add(b.dessiner());
+      test.getChildren().add(b.dessiner(this));
     }
-    Label seuls = new Label("elfes seuls [");
-    for (Personnage e : this.getElfes()){
-      if (!e.hasTribu()){
-        seuls.setText(seuls.getText()+e);
-      }
-    }
-    seuls.setText(seuls.getText()+"]");
+
     int nbgnomes = 0;
+    Label seuls = new Label();
     for (Personnage e : this.getGnomes()){
       if (!e.hasTribu()){
         nbgnomes ++;
       }
     }
-    seuls.setText(seuls.getText()+" gnomes seuls : "+nbgnomes);
+    if (nbgnomes > 0){
+      seuls.setText(seuls.getText()+" gnomes seuls : "+nbgnomes);
+    }
     test.getChildren().add(seuls);
     this.dessin.getChildren().add(test);
-    return this.dessin;
-  }
 
-  public void dessinerPersonnages(){
-    VBox texte = new VBox(5);
-    texte.getChildren().add(new Label(String.valueOf(this.getElfes().size())+" elfes."));
-    texte.getChildren().add(new Label(String.valueOf(this.getGnomes().size())+" gnomes."));
-    this.dessin.getChildren().add(texte);
+    return this.dessin;
   }
   
   public ArrayList<Personnage> getPerso() {
@@ -131,5 +123,13 @@ public class Parcelle {
 
   public void ajouterTribu(Tribu a){
     this.tribus.add(a);
+  }
+
+  public ArrayList<Tribu> getTribus(){
+    return this.tribus;
+  }
+
+  public boolean equals(Parcelle p){
+    return p.getRow() == this.row && p.col == this.getCol();
   }
 }

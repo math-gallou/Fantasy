@@ -83,15 +83,33 @@ public class Tribu extends Element {
   }
 
   public String affichage(){
-    return "tribu " + this.name + " chef elfe " + this.chef + "\nelfes " + this.getElfes() + "\n" + this.getGnomes().size() + " gnomes\ntribus " + this.getTribuesDominees();
+    return "tribu " + this.name + " chef elfe " + this.chef + "\nelfes " + this.getElfes() + "\n" + this.getGnomes().size() + " gnomes\ntribus dominées " + this.getTribuesDominees() + "\n\n";
   }
 
   public boolean isDominante(){
     return this.getTribuesDominees().size() == 0;
   }
 
-  public Node dessiner(){
-    Text res = new Text(this.affichage());
+  public Node dessiner(Parcelle p){
+    Text res = new Text(" Tribu " + this.name + " :\n");
+    ArrayList<Elfe> elfes_presents = new ArrayList<>();
+    for (Elfe e : this.getElfes()){
+      if (e.isSurParcelle(p)){
+        elfes_presents.add(e);
+      }
+    }
+    int nb_gnomes = 0;
+    for (Gnome g : this.getGnomes()){
+      if (g.isSurParcelle(p)){
+        nb_gnomes ++;
+      }
+    }
+    if (elfes_presents.size()>0){
+      res.setText(res.getText()+ "  - elfes : " + elfes_presents + "\n");
+    }
+    if (nb_gnomes > 0){
+      res.setText(res.getText()+ "  - gnomes : " + nb_gnomes + "\n");
+    }
     return res;
   }
 }

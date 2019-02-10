@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -32,6 +33,7 @@ public class Monde extends Application{
     private int index_elfe;
     private ArrayList<Personnage> personnages;
     private BorderPane cont;
+    private ArrayList<Tribu> tribus;
 
 
     public ArrayList<Parcelle> getParcelles(){
@@ -198,6 +200,7 @@ public class Monde extends Application{
     }
 
     public void repartirTribu(){
+        this.tribus = new ArrayList<>();
         for (Parcelle p : this.parcelles){
             if (p.getElfes().size() > 0){
                 Random r = new Random();
@@ -206,6 +209,7 @@ public class Monde extends Application{
                 nouveau_chef.devenirChef();
                 Tribu b = new Tribu(nouveau_chef, p.getPerso());
                 p.ajouterTribu(b);
+                this.tribus.add(b);
                 for (Personnage perso : p.getPerso()){
                     perso.setTribu(b);
                 }
@@ -249,7 +253,11 @@ public class Monde extends Application{
 
     private VBox gauche(){
         VBox gauche = new VBox();
-        gauche.setPrefWidth(50);
+        for (Parcelle p : this.parcelles){
+            for (Tribu b : p.getTribus()){
+                gauche.getChildren().add(new Text(b.affichage()));
+            }
+        }
         return gauche;
     }
 
@@ -331,7 +339,9 @@ public class Monde extends Application{
     }
 
     public void actualiserAffichage(){
-        this.cont.setCenter(this.central());
+        GridPane centre = this.central();
+        centre.setAlignment(Pos.CENTER);
+        this.cont.setCenter(centre);
     }
 
     /**
