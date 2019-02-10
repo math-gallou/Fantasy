@@ -20,8 +20,12 @@ public class Parcelle {
     this.col = col;
     this.personnages = new ArrayList<>();
     this.dessin = new StackPane();
-    this.nbPlaces = 10;
+    this.nbPlaces = 0;
     this.tribus = new ArrayList<>();
+  }
+
+  public void setNbPlaces(int i){
+    this.nbPlaces = i;
   }
 
   public StackPane dessiner(){

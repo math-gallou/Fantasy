@@ -34,6 +34,9 @@ public class Monde extends Application{
     private ArrayList<Personnage> personnages;
     private BorderPane cont;
     private ArrayList<Tribu> tribus;
+    private int nbJoueurs;
+    private int nbIA;
+    private int limite_parcelle;
 
 
     public ArrayList<Parcelle> getParcelles(){
@@ -56,30 +59,62 @@ public class Monde extends Application{
         Optional<ButtonType> result = alert.showAndWait();
 
         this.parcelles = new ArrayList<>();
-
+        int nb = 0;
         if (result.get() == boutonTrois){
             System.out.println("Choix 3x3");
-            for (int i = 0; i < 3; i++){
-                for (int j = 0; j < 3; j++){
-                    this.parcelles.add(new Parcelle(j, i));
-                }
-            }
+            nb = 3;
         } else if (result.get() == boutonQuatre) {
             System.out.println("Choix 4x4");
-            for (int i = 0; i < 4; i++){
-                for (int j = 0; j < 4; j++){
-                    this.parcelles.add(new Parcelle(j, i));
-                }
-            }
+            nb = 4;
         } else if (result.get() == boutonCinq) {
             System.out.println("Choix 5x5");
-            for (int i = 0; i < 5; i++){
-                for (int j = 0; j < 5; j++){
-                    this.parcelles.add(new Parcelle(j, i));
-                }
-            }
+            nb = 5;
         } else {
             this.nbParcelles();
+        }
+
+        for (int i = 0; i < nb; i++){
+            for (int j = 0; j < nb; j++){
+                this.parcelles.add(new Parcelle(j, i));
+            }
+        }
+    }
+
+    /**
+     * @return le panel du nombre de personnages
+     */
+    private void nbJoueurs(){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Nombre de joueurs");
+        alert.setHeaderText("Choisissez le nombre de joueurs");
+
+        ButtonType boutonChoixUn = new ButtonType("1 joueur et 3 IA");
+        ButtonType boutonChoixDeux = new ButtonType("2 joueurs et 2 IA");
+        ButtonType boutonChoixTrois = new ButtonType("3 joueurs et 3 IA");
+        ButtonType boutonChoixQuatre = new ButtonType("4 joueurs et 3 IA");
+
+        alert.getButtonTypes().setAll(boutonChoixUn, boutonChoixDeux, boutonChoixTrois, boutonChoixQuatre);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == boutonChoixUn){
+            System.out.println("Choix 1 joueur");
+            this.nbJoueurs = 1;
+            this.nbIA = 3;
+        } else if (result.get() == boutonChoixDeux) {
+            System.out.println("Choix 2 joueurs");
+            this.nbJoueurs = 2;
+            this.nbIA = 2;
+        } else if (result.get() == boutonChoixTrois) {
+            System.out.println("Choix 3 joueurs");
+            this.nbJoueurs = 3;
+            this.nbIA = 1;
+        } else if (result.get() == boutonChoixQuatre){
+            this.nbJoueurs = 4;
+            this.nbIA = 0;
+            System.out.println("Choix 4 joueurs");
+        } else {
+            this.nbPersos();
         }
     }
 
@@ -89,24 +124,27 @@ public class Monde extends Application{
     private void nbPersos(){
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Nombre de personnages");
-        alert.setHeaderText("Choisissez le nombre de personnages");
+        alert.setHeaderText("Choisissez le nombre d'elfes par joueurs");
 
-        ButtonType boutonChoixUn = new ButtonType("30 Gnomes et 10 Elfes");
-        ButtonType boutonChoixDeux = new ButtonType("50 Gnomes et 15 Elfes");
-        ButtonType boutonChoixTrois = new ButtonType("80 Gnomes et 20 Elfes");
+        ButtonType boutonChoixUn = new ButtonType("3 Elfes");
+        ButtonType boutonChoixDeux = new ButtonType("4 Elfes");
+        ButtonType boutonChoixTrois = new ButtonType("5 Elfes");
 
         alert.getButtonTypes().setAll(boutonChoixUn, boutonChoixDeux, boutonChoixTrois);
 
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == boutonChoixUn){
-            System.out.println("Choix 30 Gnomes et 10 Elfes");
-            this.repartirPersonnages(30,10);
+            System.out.println("Choix 40 Gnomes et 12 Elfes");
+            this.limite_parcelle = 10;
+            this.repartirPersonnages(40,12);
         } else if (result.get() == boutonChoixDeux) {
-            System.out.println("Choix 50 Gnomes et 15 Elfes");
-            this.repartirPersonnages(50,15);
+            System.out.println("Choix 60 Gnomes et 16 Elfes");
+            this.limite_parcelle = 15;
+            this.repartirPersonnages(50,16);
         } else if (result.get() == boutonChoixTrois) {
             System.out.println("Choix 80 Gnomes et 20 Elfes");
+            this.limite_parcelle = 20;
             this.repartirPersonnages(80,20);
         } else {
             this.nbPersos();
@@ -114,64 +152,13 @@ public class Monde extends Application{
         this.repartirTribu();
     }
 
-        /**
-     * @return le panel du nombre de personnages
-     */
-    private void nbJoueurs(){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Nombre de joueurs");
-        alert.setHeaderText("Choisissez le nombre de joueurs");
-
-        ButtonType boutonChoixUn = new ButtonType("1 joueur");
-        ButtonType boutonChoixDeux = new ButtonType("2 joueurs");
-        ButtonType boutonChoixTrois = new ButtonType("3 joueurs");
-
-        alert.getButtonTypes().setAll(boutonChoixUn, boutonChoixDeux, boutonChoixTrois);
-
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.get() == boutonChoixUn){
-            System.out.println("Choix 1 joueur");
-        } else if (result.get() == boutonChoixDeux) {
-            System.out.println("Choix 2 joueurs");
-        } else if (result.get() == boutonChoixTrois) {
-            System.out.println("Choix 3 joueurs");
-        } else {
-            this.nbPersos();
-        }
-    }
-
-    /**
-     * @return le panel du nombre de personnages
-     */
-    private void nbIA(){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Nombre d'ordinateurs adverses");
-        alert.setHeaderText("Choisissez le nombre d'ordinateurs adverses");
-
-        ButtonType boutonChoixUn = new ButtonType("1 ordinateur adverse");
-        ButtonType boutonChoixDeux = new ButtonType("2 ordinateurs adverses");
-        ButtonType boutonChoixTrois = new ButtonType("3 ordinateurs adverses");
-
-        alert.getButtonTypes().setAll(boutonChoixUn, boutonChoixDeux, boutonChoixTrois);
-
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.get() == boutonChoixUn){
-            System.out.println("1 ordinateur adverse");
-        } else if (result.get() == boutonChoixDeux) {
-            System.out.println("2 ordinateurs adverses");
-        } else if (result.get() == boutonChoixTrois) {
-            System.out.println("3 ordinateurs adverses");
-        } else {
-            this.nbPersos();
-        }
-    }
-
     /**
      * Réparti les personnages dans les parcelles
      */
     private void repartirPersonnages(int nbGnomes, int nbElfes){
+        for (Parcelle p : this.parcelles){
+            p.setNbPlaces(this.limite_parcelle);
+        }
         this.personnages = new ArrayList<>();
         Random random = new Random();
         int nb = (int) Math.sqrt(this.parcelles.size());
@@ -363,7 +350,6 @@ public class Monde extends Application{
         this.nbParcelles();
         this.nbPersos();
         this.nbJoueurs();
-        this.nbIA();
         stage.setTitle("Fantasy");
         stage.setScene(this.laScene());
         stage.show();
