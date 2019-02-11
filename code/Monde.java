@@ -252,6 +252,8 @@ public class Monde extends Application{
             this.emancipation.setDisable(true);
             this.negociation.setDisable(true);
             if (this.joueur.getParcelle().unSeulElfe()){
+                this.formation.setDisable(true);
+            } else {
                 this.formation.setDisable(false);
             }
         }
