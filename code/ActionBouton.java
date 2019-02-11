@@ -54,6 +54,8 @@ public class ActionBouton implements EventHandler<ActionEvent> {
                     break;
             case "Négociation":
                     System.out.println("Négociation");
+                    Elfe negociant = this.joueur.choisiNegociant(this.m.getParcelles());
+                    this.joueur.negocie(negociant);
                     break;
             default: 
                     System.out.println("Action par défault ");

@@ -222,4 +222,17 @@ public class Parcelle {
   public boolean unSeulElfe(){
     return this.getElfes().size() == 1;
   }
+
+  public ArrayList<Elfe> getElfesChefsEgaux(Elfe autre_chef){
+    ArrayList<Elfe> res = new ArrayList<>();
+    for (Personnage p : this.personnages){
+      if (p.isElfe()){
+        Elfe a = (Elfe) p;
+        if (a.isChef() && a.getTribu().piedDEgalite(autre_chef.getTribu())){
+          res.add(a);
+        }
+      }
+    }
+    return res;
+  }
 }

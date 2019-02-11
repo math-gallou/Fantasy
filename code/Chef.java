@@ -65,4 +65,8 @@ public class Chef implements IStrategie {
     return elfe.getTribu().hasParent();
   }
 
+  public boolean peutNegocier(){
+    return true;
+  }
+
 }

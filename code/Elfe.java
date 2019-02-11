@@ -1,3 +1,4 @@
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.shape.Shape;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert;
@@ -158,5 +159,34 @@ public class Elfe extends Personnage {
 
   public boolean peutSEmanciper(){
     return this.role.peutSEmanciper(this);
+  }
+
+  public boolean peutNegocier(){
+    return this.role.peutNegocier();
+  }
+
+  public Elfe choisiNegociant(ArrayList<Parcelle> parcelles){
+    ArrayList<Elfe> choix = new ArrayList<>();
+    if (this.parcelle.getGauche(parcelles) != null){
+      choix.addAll(this.parcelle.getGauche(parcelles).getElfesChefsEgaux(this));
+    }
+    if (this.parcelle.getDroite(parcelles) != null){
+      choix.addAll(this.parcelle.getDroite(parcelles).getElfesChefsEgaux(this));
+    }
+    if (this.parcelle.getHaut(parcelles) != null){
+      choix.addAll(this.parcelle.getHaut(parcelles).getElfesChefsEgaux(this));
+    }
+    if (this.parcelle.getBas(parcelles) != null){
+      choix.addAll(this.parcelle.getBas(parcelles).getElfesChefsEgaux(this));
+    }
+
+    ChoiceDialog<Elfe> dialog = new ChoiceDialog<>(choix.get(0), choix);
+    dialog.setTitle("Négociation");
+    dialog.setHeaderText("Choisissez un elfe pour négocier");
+    dialog.setContentText("Chef : ");
+
+    Optional<Elfe> result = dialog.showAndWait();
+
+    return result.get();
   }
 }

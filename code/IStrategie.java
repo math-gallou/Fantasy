@@ -18,4 +18,6 @@ public interface IStrategie {
   public boolean isChef();
 
   public boolean peutSEmanciper(Elfe elfe);
+
+  public boolean peutNegocier();
 }
