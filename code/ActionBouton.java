@@ -38,6 +38,7 @@ public class ActionBouton implements EventHandler<ActionEvent> {
                     break;
             case "Répondre à une sollicitation":
                     System.out.println("Répondre à une sollicitation");
+                    this.joueur.repondSollicitation();
                     break;
             case "Former sa tribu":
                     System.out.println("Former sa tribu");
@@ -49,6 +50,7 @@ public class ActionBouton implements EventHandler<ActionEvent> {
                     break;
             case "S'émanciper":
                     System.out.println("S'émanciper");
+                    this.joueur.sEmancipe();
                     break;
             case "Négociation":
                     System.out.println("Négociation");

@@ -37,7 +37,6 @@ public class Chef implements IStrategie {
           g.elfeSollicite(elfe.getTribu(), m.getParcelles());
         }
       } else {
-        System.out.println(g + " n'a pas de tribu et on le sollicite");
         g.elfeSollicite(elfe.getTribu(), m.getParcelles());
       }
     }

@@ -142,10 +142,9 @@ public class Tribu extends Element {
   }
 
   public void couperLesLiens(){
-    if (this.hasParent()){
-      this.parent.enleverEnfant(this);
-      this.setParent(null);
-    }
+    System.out.println("Je m'émancipe");
+    this.parent.enleverEnfant(this);
+    this.setParent(null);
   }
 
   public boolean piedDEgalite(Tribu b){
