@@ -104,6 +104,10 @@ public class Parcelle {
     return res;
   }
 
+  public void enleverTribu(Tribu b){
+    this.tribus.remove(b);
+  }
+
   public boolean isAGauche(Parcelle p){
     return (this.row == p.getRow()) && (this.col - p.getCol() == 1) && this.restePlace();
   }

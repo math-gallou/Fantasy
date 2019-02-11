@@ -10,9 +10,13 @@ public class Normal implements IStrategie {
   public void formeTribu(Elfe chef, Monde m){
     Tribu nouvelle_tribu = new Tribu(chef, chef.getParcelle().getPerso());
     chef.getParcelle().ajouterTribu(nouvelle_tribu);
+    chef.getParcelle().enleverTribu(chef.getTribu());
     chef.setTribu(nouvelle_tribu);
     chef.devenirChef();
     m.ajouterTribu(nouvelle_tribu);
+    for (Gnome g : chef.getParcelle().getGnomes()){
+      g.deserterGnome(nouvelle_tribu);
+    }
     System.out.println("Je forme ma tribu");
   }
 

@@ -41,7 +41,9 @@ public class Gnome extends Personnage implements IEventGnome {
 
   public void deserterGnome(Tribu nouvelle_tribu) {
       System.out.println(this + " déserte " + this.tribu + " pour " + nouvelle_tribu);
-      this.tribu.enleverEnfant(this);
+      if (this.hasTribu()){
+          this.tribu.enleverEnfant(this);
+      }
       this.setTribu(nouvelle_tribu);
   }
 
