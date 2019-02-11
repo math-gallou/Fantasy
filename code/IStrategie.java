@@ -3,7 +3,7 @@ import javafx.scene.shape.Circle;
 
 public interface IStrategie {
   
-  public void repondSollicitation();
+  public void repondSollicitation(Elfe chef);
 
   public void formeTribu(Elfe chef, Monde m);
 

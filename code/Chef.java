@@ -1,12 +1,33 @@
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class Chef implements IStrategie {
 
-  public void repondSollicitation(){
+  public void repondSollicitation(Elfe chef){
     System.out.println("Je réponds à une sollicitation");
+    Negociation nego = chef.choisiNego();
+    Elfe autre = nego.getLanceur();
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Negociation");
+    alert.setHeaderText("Répondez à la proposition de " + autre);
+
+    ButtonType fusion = new ButtonType("Fusionner les deux tribus");
+    ButtonType statuQuo = new ButtonType("Ne rien faire (statuQuo)");
+
+    alert.getButtonTypes().setAll(fusion, statuQuo);
+
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.get() == fusion){
+      System.out.println("Fusion !!");
+    } else if (result.get() == statuQuo) {
+      System.out.println("Rien du tout, statuQuo");
+    }
   }
 
   public void formeTribu(Elfe chef, Monde m){

@@ -29,7 +29,7 @@ public class Elfe extends Personnage {
   }
 
   public void repondSollicitation() {
-    this.role.repondSollicitation();
+    this.role.repondSollicitation(this);
   }
 
   public void formeTribu(Monde m) {
@@ -54,6 +54,7 @@ public class Elfe extends Personnage {
 
   public void devenirNormal(){
     this.role = new Normal();
+    this.negociations = new ArrayList<>();
   }
 
   public boolean isChefSupreme() {
@@ -203,5 +204,15 @@ public class Elfe extends Personnage {
 
   public boolean peutRepondre(){
     return this.role.peutRepondre(this);
+  }
+
+  public Negociation choisiNego(){
+    ChoiceDialog<Negociation> dialog = new ChoiceDialog<>(negociations.get(0), negociations);
+    dialog.setTitle("Négociation");
+    dialog.setHeaderText("Choisissez une négociation à laquelle répondre");
+
+    Optional<Negociation> result = dialog.showAndWait();
+
+    return result.get();
   }
 }

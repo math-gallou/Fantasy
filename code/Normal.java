@@ -3,7 +3,7 @@ import javafx.scene.shape.Circle;
 
 public class Normal implements IStrategie {
 
-  public void repondSollicitation(){
+  public void repondSollicitation(Elfe chef){
     System.out.println("Je ne peux pas répondre à une négociation");
   }
 
