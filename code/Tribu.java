@@ -1,6 +1,7 @@
 import javafx.scene.Node;
 import javafx.scene.text.Text;
 
+import java.security.cert.TrustAnchor;
 import java.util.*;
 
 public class Tribu extends Element {
@@ -145,5 +146,28 @@ public class Tribu extends Element {
       this.parent.enleverEnfant(this);
       this.setParent(null);
     }
+  }
+
+  public boolean piedDEgalite(Tribu b){
+    return !this.dansLesDominants(b) && !this.dansLesDomines(b);
+  }
+
+  public boolean dansLesDomines(Tribu b){
+    boolean oui = this.enfantsDomines.contains(b);
+    for (Tribu t : this.getTribuesDominees()){
+      oui = t.dansLesDomines(b);
+    }
+    return oui;
+  }
+
+  public boolean dansLesDominants(Tribu b){
+    boolean oui = false;
+    if (this.hasParent()) {
+      oui = this.parent.equals(b);
+      if (!oui) {
+        oui = this.parent.dansLesDominants(b);
+      }
+    }
+    return oui;
   }
 }
