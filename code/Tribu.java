@@ -17,6 +17,7 @@ public class Tribu extends Element {
     this.enfantsDomines = new ArrayList<>();
     this.enfantsDomines.addAll(premiers_domines);
     this.name = String.valueOf(cpt);
+    this.parent = null;
     cpt ++;
   }
 
@@ -30,6 +31,18 @@ public class Tribu extends Element {
 
   public boolean isTribu(){
     return true;
+  }
+
+  public Tribu getParent(){
+    return this.parent;
+  }
+
+  public void setParent(Tribu b){
+    this.parent = b;
+  }
+
+  public boolean hasParent(){
+    return this.parent != null;
   }
 
   public void ajouterEnfant(Element enfant){
