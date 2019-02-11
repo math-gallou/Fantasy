@@ -13,8 +13,6 @@ public class Chef implements IStrategie {
 
   public void negocie(Elfe chef){}
 
-  public void devenirChef(){}
-
   public Circle dessiner(Color couleur){
     Circle res = new Circle(2);
     res.setFill(couleur);

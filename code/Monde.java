@@ -227,7 +227,7 @@ public class Monde extends Application{
     /**
      * permet d'activer ou désactiver les options
      * de jeu
-     * implémentés : déplacement, sollicitation
+     * implémentés : tous
      */
     public void activerBouton() {
         if(this.joueur.peutSeDeplacer(this.parcelles)){
@@ -245,9 +245,11 @@ public class Monde extends Application{
         } else {
             this.sollicitation.setDisable(true);
             this.reponse.setDisable(true);
-            this.formation.setDisable(false);
             this.emancipation.setDisable(true);
             this.negociation.setDisable(true);
+            if (this.joueur.getParcelle().unSeulElfe()){
+                this.formation.setDisable(false);
+            }
         }
     }
 

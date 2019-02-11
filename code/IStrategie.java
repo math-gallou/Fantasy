@@ -13,8 +13,6 @@ public interface IStrategie {
 
   public void negocie(Elfe chef);
 
-  public void devenirChef();
-
   public Circle dessiner(Color couleur);
 
   public boolean isChef();

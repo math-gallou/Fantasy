@@ -27,21 +27,31 @@ public class Elfe extends Personnage {
   }
 
   public void repondSollicitation() {
+    this.role.repondSollicitation();
   }
 
   public void formeTribu() {
+    this.role.formeTribu();
   }
 
   public void sollicite() {
+    this.role.sollicite();
   }
 
   public void sEmancipe() {
+    this.role.sEmancipe();
   }
 
   public void negocie(Elfe chef) {
+    this.role.negocie(chef);
   }
 
   public void devenirChef() {
+    this.role = new Chef();
+  }
+
+  public void devenirNormal(){
+    this.role = new Normal();
   }
 
   public void isChefSupreme() {

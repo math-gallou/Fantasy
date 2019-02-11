@@ -213,4 +213,8 @@ public class Parcelle {
     }
     return res;
   }
+
+  public boolean unSeulElfe(){
+    return this.getElfes().size() == 1;
+  }
 }
