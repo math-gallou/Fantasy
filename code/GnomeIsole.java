@@ -6,7 +6,7 @@ public class GnomeIsole implements IEtatGnome {
 
   public void deplacementElfe(AutomateGnome automate){
     Gnome gnome = automate.getControle();
-    if (gnome.getTribu().getChef().getParcelle().equals(gnome.getParcelle())){
+    if (gnome.memeParcelleChef()){
       automate.changerEtat(new GnomeProtege());
       System.out.println(gnome + " devient protégé");
     } else {

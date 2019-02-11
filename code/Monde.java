@@ -358,7 +358,7 @@ public class Monde extends Application{
         this.reponse.setOnAction(eh);
         this.formation = new Button("Former sa tribu");
         this.formation.setOnAction(eh);
-        this.sollicitation = new Button("Solliciter un chef");
+        this.sollicitation = new Button("Solliciter");
         this.sollicitation.setOnAction(eh);
         this.emancipation = new Button("S'émanciper");
         this.emancipation.setOnAction(eh);

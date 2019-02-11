@@ -69,18 +69,20 @@ public class Parcelle {
 
   public void enleverPerso(Personnage p){
     this.personnages.remove(p);
-    int i = 0;
-    boolean present = false;
-    while (i < this.personnages.size() && !present){
-      if (this.personnages.get(i).hasTribu()){
-        if (this.personnages.get(i).getTribu().equals(p.getTribu())){
-          present = true;
+    if (p.hasTribu()){
+      int i = 0;
+      boolean present = false;
+      while (i < this.personnages.size() && !present){
+        if (this.personnages.get(i).hasTribu()){
+          if (this.personnages.get(i).getTribu().equals(p.getTribu())){
+            present = true;
+          }
         }
+        i++;
       }
-      i++;
-    }
-    if (!present){
-      this.tribus.remove(p.getTribu());
+      if (!present){
+        this.tribus.remove(p.getTribu());
+      }
     }
   }
 
@@ -200,7 +202,7 @@ public class Parcelle {
       }
     }
     if (this.getHaut(parcelles) != null){
-      if (this.getBas(parcelles).restePlace()){
+      if (this.getHaut(parcelles).restePlace()){
         res.add(this.getHaut(parcelles));
       }
     }

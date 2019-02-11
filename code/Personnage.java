@@ -39,4 +39,10 @@ public abstract class Personnage extends Element {
         return this.parcelle;
     }
 
+    public void deplacementPerso(Parcelle nouvelle_parcelle){
+        this.parcelle.enleverPerso(this);
+        this.parcelle = nouvelle_parcelle;
+        this.parcelle.ajouterPerso(this);
+    }
+
 }

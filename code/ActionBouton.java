@@ -43,8 +43,9 @@ public class ActionBouton implements EventHandler<ActionEvent> {
                     System.out.println("Former sa tribu");
                     this.joueur.formeTribu(this.m);
                     break;
-            case "Solliciter un chef":
-                    System.out.println("Solliciter un chef");
+            case "Solliciter":
+                    System.out.println("Solliciter");
+                    this.joueur.sollicite(this.m);
                     break;
             case "S'émanciper":
                     System.out.println("S'émanciper");

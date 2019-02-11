@@ -1,7 +1,4 @@
-import com.sun.org.apache.xml.internal.utils.SystemIDResolver;
-
 import java.util.ArrayList;
-import java.util.Random;
 
 public class GnomeProtege implements IEtatGnome {
 
@@ -9,23 +6,18 @@ public class GnomeProtege implements IEtatGnome {
 
   public void deplacementElfe(AutomateGnome automate){
     Gnome gnome = automate.getControle();
+    boolean ok = false;
     int i = 0;
-    while (i < gnome.getTribu().getElfes().size()){
-      if (gnome.getTribu().getElfes().get(i).getParcelle().equals(gnome.getParcelle())){
-        automate.changerEtat(new GnomeVulnerable());
-        System.out.println(gnome + " devient vulnérable");
-        i = gnome.getTribu().getElfes().size();
-      }
+    while (i < gnome.getTribu().getElfes().size() && !ok){
+      ok = gnome.getTribu().getElfes().get(i).getParcelle().equals(gnome.getParcelle());
       i ++;
     }
-    if (!gnome.getTribu().getChef().getParcelle().equals(gnome.getParcelle())){
+    if (!ok && !gnome.memeParcelleChef()){
       automate.changerEtat(new GnomeIsole());
-      System.out.println(gnome + " devient plutot isolé");
-      Random rand = new Random();
-      int choix = rand.nextInt(1);
-      if (choix == 1){
-        gnome.refugierGnome();
-      }
+      System.out.println(gnome + " devient isolé");
+    } else if (ok && !gnome.memeParcelleChef()){
+      automate.changerEtat(new GnomeVulnerable());
+      System.out.println(gnome + " devient vulnérable");
     }
   }
 

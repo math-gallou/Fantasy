@@ -26,7 +26,7 @@ public class Normal implements IStrategie {
     System.out.println("Je forme ma tribu");
   }
 
-  public void sollicite(){
+  public void sollicite(Elfe elfe, Monde m){
     System.out.println("Je ne peux pas solliciter");
   }
 

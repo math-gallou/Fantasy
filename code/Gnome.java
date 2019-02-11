@@ -27,16 +27,16 @@ public class Gnome extends Personnage implements IEventGnome {
       return this.controleur;
   }
   
-  public void fuirGnome(ArrayList<Parcelle> parcelles) {
+  public void fuirGnome(ArrayList<Parcelle> parcelles, Parcelle parcelle_eviter) {
       Random rand = new Random();
       ArrayList<Parcelle> voisins = this.parcelle.getVoisinsDispo(parcelles);
+      voisins.remove(parcelle_eviter);
       if (voisins.size() > 0){
-          int choix = rand.nextInt(voisins.size());
-          this.parcelle.enleverPerso(this);
-          voisins.get(choix).ajouterPerso(this);
-          this.setParcelle(voisins.get(choix));
+          this.deplacementPerso(voisins.get(rand.nextInt(voisins.size())));
+          System.out.println(this + " fuit en " + this.parcelle);
+      } else {
+          System.out.println(this + " n'a pas pu fuir !");
       }
-      System.out.println(this + " fuit en " + this.parcelle);
   }
 
   public void deserterGnome(Tribu nouvelle_tribu) {
@@ -45,19 +45,19 @@ public class Gnome extends Personnage implements IEventGnome {
           this.tribu.enleverEnfant(this);
       }
       this.setTribu(nouvelle_tribu);
+      nouvelle_tribu.ajouterEnfant(this);
+      this.deplacementPerso(this.parcelle);
   }
 
   public void refugierGnome() {
       if (this.tribu.getChef().getParcelle().isACote(this.parcelle)){
-          this.parcelle.enleverPerso(this);
-          this.tribu.getChef().getParcelle().ajouterPerso(this);
-          this.setParcelle(this.tribu.getChef().getParcelle());
+          this.deplacementPerso(this.tribu.getChef().getParcelle());
           System.out.println(this + " se réfugie en " + this.parcelle);
       }
   }
 
   public boolean memeParcelleChef() {
-    return false;
+    return this.tribu.getChef().getParcelle().equals(this.parcelle);
   }
 
   public boolean isElfe(){

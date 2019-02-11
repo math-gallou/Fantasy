@@ -21,9 +21,7 @@ public class Elfe extends Personnage {
   }
 
   public void seDeplacer(Monde m) {
-    this.parcelle.enleverPerso(this);
-    this.parcelle = this.choisirDeplacement(m);
-    this.parcelle.ajouterPerso(this);
+    this.deplacementPerso(this.choisirDeplacement(m));
   }
 
   public void repondSollicitation() {
@@ -34,8 +32,8 @@ public class Elfe extends Personnage {
     this.role.formeTribu(this, m);
   }
 
-  public void sollicite() {
-    this.role.sollicite();
+  public void sollicite(Monde m) {
+    this.role.sollicite(this, m);
   }
 
   public void sEmancipe() {

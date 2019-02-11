@@ -7,20 +7,19 @@ public class GnomeVulnerable implements IEtatGnome {
 
   public void deplacementElfe(AutomateGnome automate){
     Gnome gnome = automate.getControle();
-    automate.changerEtat(new GnomeIsole());
-    System.out.println(gnome + " devient isolé");
-    if (gnome.getTribu().getChef().getParcelle().equals(gnome.getParcelle())){
+    if (gnome.memeParcelleChef()){
       automate.changerEtat(new GnomeProtege());
-      System.out.println(gnome + " devient plutot protégé");
+      System.out.println(gnome + " devient protégé");
     } else {
+      boolean ok = false;
       int i = 0;
-      while (i < gnome.getTribu().getElfes().size()){
-        if (gnome.getTribu().getElfes().get(i).getParcelle().equals(gnome.getParcelle())){
-          automate.changerEtat(new GnomeVulnerable());
-          System.out.println(gnome + " devient plutot vulnérable");
-          i = gnome.getTribu().getElfes().size();
-        }
+      while (i < gnome.getTribu().getElfes().size() && !ok){
+        ok = gnome.getTribu().getElfes().get(i).getParcelle().equals(gnome.getParcelle());
         i ++;
+      }
+      if (!ok){
+        automate.changerEtat(new GnomeIsole());
+        System.out.println(gnome + " devient isolé");
       }
     }
   }
@@ -31,12 +30,12 @@ public class GnomeVulnerable implements IEtatGnome {
 
   public void elfeSollicite(AutomateGnome automate, Tribu nouvelle_tribu, ArrayList<Parcelle> parcelles){
     Random rand = new Random();
-    int choix = rand.nextInt(1);
+    int choix = rand.nextInt(2);
     if (choix == 1){
       automate.getControle().deserterGnome(nouvelle_tribu);
       automate.changerEtat(new GnomeProtege());
     } else {
-      automate.getControle().fuirGnome(parcelles);
+      automate.getControle().fuirGnome(parcelles, nouvelle_tribu.getChef().getParcelle());
     }
   }
 
