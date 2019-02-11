@@ -3,15 +3,25 @@ import javafx.scene.shape.Circle;
 
 public class Chef implements IStrategie {
 
-  public void repondSollicitation(){}
+  public void repondSollicitation(){
+    System.out.println("Je réponds à une sollicitation");
+  }
 
-  public void formeTribu(){}
+  public void formeTribu(Elfe chef){
+    System.out.println("Je ne peux pas former de tribu");
+  }
 
-  public void sollicite(){}
+  public void sollicite(){
+    System.out.println("Je sollicite");
+  }
 
-  public void sEmancipe(){}
+  public void sEmancipe(){
+    System.out.println("Je m'émancipe");
+  }
 
-  public void negocie(Elfe chef){}
+  public void negocie(Elfe chef){
+    System.out.println("Je négocie");
+  }
 
   public Circle dessiner(Color couleur){
     Circle res = new Circle(2);

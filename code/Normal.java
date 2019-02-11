@@ -3,15 +3,25 @@ import javafx.scene.shape.Circle;
 
 public class Normal implements IStrategie {
 
-  public void repondSollicitation(){}
+  public void repondSollicitation(){
+    System.out.println("Je ne peux pas répondre à une négociation");
+  }
 
-  public void formeTribu(){}
+  public void formeTribu(Elfe chef){
+    System.out.println("Je forme ma tribu");
+  }
 
-  public void sollicite(){}
+  public void sollicite(){
+    System.out.println("Je ne peux pas solliciter");
+  }
 
-  public void sEmancipe(){}
+  public void sEmancipe(){
+    System.out.println("Je ne peux pas m'émanciper");
+  }
 
-  public void negocie(Elfe chef){}
+  public void negocie(Elfe chef){
+    System.out.println("Je ne peux pas négocier");
+  }
 
   public Circle dessiner(Color couleur){
     Circle res = new Circle(2);
