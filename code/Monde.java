@@ -242,14 +242,13 @@ public class Monde extends Application{
         this.deplacement.setDisable(!this.joueur.peutSeDeplacer(this.parcelles));
         this.emancipation.setDisable(!this.joueur.peutSEmanciper());
         this.negociation.setDisable(!this.joueur.peutNegocier());
+        this.reponse.setDisable(!this.joueur.peutRepondre());
 
         if (this.joueur.isChef()){
             this.sollicitation.setDisable(false);
-            this.reponse.setDisable(false);
             this.formation.setDisable(true);
         } else {
             this.sollicitation.setDisable(true);
-            this.reponse.setDisable(true);
             if (this.joueur.getParcelle().unSeulElfe()){
                 this.formation.setDisable(false);
             } else {

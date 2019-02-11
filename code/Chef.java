@@ -47,8 +47,9 @@ public class Chef implements IStrategie {
     elfe.getTribu().couperLesLiens();
   }
 
-  public void negocie(Elfe chef){
-    System.out.println("Je négocie");
+  public void negocie(Elfe chef, Elfe lanceur){
+    System.out.println("Je négocie avec " + chef);
+    chef.ajouterNegociation(new Negociation(lanceur));
   }
 
   public Circle dessiner(Color couleur){
@@ -67,6 +68,10 @@ public class Chef implements IStrategie {
 
   public boolean peutNegocier(){
     return true;
+  }
+
+  public boolean peutRepondre(Elfe joueur){
+      return joueur.getNegociations().size() > 0;
   }
 
 }

@@ -11,7 +11,7 @@ public interface IStrategie {
 
   public void sEmancipe(Elfe elfe);
 
-  public void negocie(Elfe chef);
+  public void negocie(Elfe chef, Elfe lanceur);
 
   public Circle dessiner(Color couleur);
 
@@ -20,4 +20,6 @@ public interface IStrategie {
   public boolean peutSEmanciper(Elfe elfe);
 
   public boolean peutNegocier();
+
+  public boolean peutRepondre(Elfe joueur);
 }

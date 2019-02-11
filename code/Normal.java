@@ -34,7 +34,7 @@ public class Normal implements IStrategie {
     System.out.println("Je ne peux pas m'émanciper");
   }
 
-  public void negocie(Elfe chef){
+  public void negocie(Elfe chef, Elfe lanceur){
     System.out.println("Je ne peux pas négocier");
   }
 
@@ -54,5 +54,9 @@ public class Normal implements IStrategie {
 
   public boolean peutNegocier(){
     return false;
+  }
+
+  public boolean peutRepondre(Elfe joueur){
+      return false;
   }
 }

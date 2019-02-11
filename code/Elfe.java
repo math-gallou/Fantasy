@@ -1,3 +1,4 @@
+import com.sun.org.apache.xpath.internal.operations.Neg;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.shape.Shape;
 import javafx.scene.control.ButtonType;
@@ -9,12 +10,14 @@ import java.util.*;
 public class Elfe extends Personnage {
 
   private IStrategie role;
+  private ArrayList<Negociation> negociations;
 
   public Elfe(Parcelle p, String name){
     this.parcelle = p;
     this.nom = name;
     this.role = new Normal();
     this.tribu = null;
+    this.negociations = new ArrayList<>();
   }
 
   public Shape dessiner(Color couleur){
@@ -42,7 +45,7 @@ public class Elfe extends Personnage {
   }
 
   public void negocie(Elfe chef) {
-    this.role.negocie(chef);
+    this.role.negocie(chef, this);
   }
 
   public void devenirChef() {
@@ -188,5 +191,17 @@ public class Elfe extends Personnage {
     Optional<Elfe> result = dialog.showAndWait();
 
     return result.get();
+  }
+
+  public void ajouterNegociation(Negociation n){
+    this.negociations.add(n);
+  }
+
+  public ArrayList<Negociation> getNegociations(){
+    return this.negociations;
+  }
+
+  public boolean peutRepondre(){
+    return this.role.peutRepondre(this);
   }
 }
