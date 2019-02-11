@@ -224,6 +224,10 @@ public class Monde extends Application{
         }
     }
 
+    public void ajouterTribu(Tribu b){
+        this.tribus.add(b);
+    }
+
     /**
      * permet d'activer ou désactiver les options
      * de jeu

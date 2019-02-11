@@ -28,19 +28,20 @@ public class ActionBouton implements EventHandler<ActionEvent> {
                             }
                         }
                     }
-                for (Gnome g : ancienne.getGnomes()){
-                    if (g.hasTribu()){
-                        if (g.getTribu().equals(this.joueur.getTribu())){
-                            g.deplacementElfe();
+                    for (Gnome g : ancienne.getGnomes()){
+                        if (g.hasTribu()){
+                            if (g.getTribu().equals(this.joueur.getTribu())){
+                                g.deplacementElfe();
+                            }
                         }
                     }
-                }
                     break;
             case "Répondre à une sollicitation":
                     System.out.println("Répondre à une sollicitation");
                     break;
             case "Former sa tribu":
                     System.out.println("Former sa tribu");
+                    this.joueur.formeTribu(this.m);
                     break;
             case "Solliciter un chef":
                     System.out.println("Solliciter un chef");

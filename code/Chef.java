@@ -7,7 +7,7 @@ public class Chef implements IStrategie {
     System.out.println("Je réponds à une sollicitation");
   }
 
-  public void formeTribu(Elfe chef){
+  public void formeTribu(Elfe chef, Monde m){
     System.out.println("Je ne peux pas former de tribu");
   }
 

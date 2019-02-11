@@ -5,7 +5,7 @@ public interface IStrategie {
   
   public void repondSollicitation();
 
-  public void formeTribu(Elfe chef);
+  public void formeTribu(Elfe chef, Monde m);
 
   public void sollicite();
 

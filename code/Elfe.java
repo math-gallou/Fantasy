@@ -30,8 +30,8 @@ public class Elfe extends Personnage {
     this.role.repondSollicitation();
   }
 
-  public void formeTribu() {
-    this.role.formeTribu();
+  public void formeTribu(Monde m) {
+    this.role.formeTribu(this, m);
   }
 
   public void sollicite() {
@@ -54,7 +54,8 @@ public class Elfe extends Personnage {
     this.role = new Normal();
   }
 
-  public void isChefSupreme() {
+  public boolean isChefSupreme() {
+    return false;
   }
 
   public boolean isElfe(){

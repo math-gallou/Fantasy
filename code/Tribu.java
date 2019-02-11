@@ -1,5 +1,4 @@
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.util.*;
@@ -97,6 +96,9 @@ public class Tribu extends Element {
   public Node dessiner(Parcelle p){
     Text res = new Text(" Tribu " + this.name + " :\n");
     ArrayList<Elfe> elfes_presents = new ArrayList<>();
+    if (this.chef.isSurParcelle(p)){
+      elfes_presents.add(this.chef);
+    }
     for (Elfe e : this.getElfes()){
       if (e.isSurParcelle(p)){
         elfes_presents.add(e);

@@ -7,7 +7,12 @@ public class Normal implements IStrategie {
     System.out.println("Je ne peux pas répondre à une négociation");
   }
 
-  public void formeTribu(Elfe chef){
+  public void formeTribu(Elfe chef, Monde m){
+    Tribu nouvelle_tribu = new Tribu(chef, chef.getParcelle().getPerso());
+    chef.getParcelle().ajouterTribu(nouvelle_tribu);
+    chef.setTribu(nouvelle_tribu);
+    chef.devenirChef();
+    m.ajouterTribu(nouvelle_tribu);
     System.out.println("Je forme ma tribu");
   }
 
