@@ -224,6 +224,11 @@ public class Monde extends Application{
         }
     }
 
+    /**
+     * permet d'ajouter une tribu
+     * pour l'affichage de gauche
+     * @param b
+     */
     public void ajouterTribu(Tribu b){
         this.tribus.add(b);
     }
@@ -235,9 +240,9 @@ public class Monde extends Application{
      */
     public void activerBouton() {
         if(this.joueur.peutSeDeplacer(this.parcelles)){
-            this.deplacement.setDisable(true);
-        } else {
             this.deplacement.setDisable(false);
+        } else {
+            this.deplacement.setDisable(true);
         }
 
         if (this.joueur.isChef()){
@@ -252,9 +257,9 @@ public class Monde extends Application{
             this.emancipation.setDisable(true);
             this.negociation.setDisable(true);
             if (this.joueur.getParcelle().unSeulElfe()){
-                this.formation.setDisable(true);
-            } else {
                 this.formation.setDisable(false);
+            } else {
+                this.formation.setDisable(true);
             }
         }
     }
@@ -304,10 +309,8 @@ public class Monde extends Application{
     private ScrollPane gauche(){
         ScrollPane spane = new ScrollPane();
         VBox gauche = new VBox();
-        for (Parcelle p : this.parcelles){
-            for (Tribu b : p.getTribus()){
-                gauche.getChildren().add(new Text(b.affichage()));
-            }
+        for (Tribu b : this.tribus){
+            gauche.getChildren().add(new Text(b.affichage()));
         }
         spane.setContent(gauche);
         return spane;
@@ -385,6 +388,7 @@ public class Monde extends Application{
         GridPane centre = this.central();
         centre.setAlignment(Pos.CENTER);
         this.cont.setCenter(centre);
+        this.cont.setLeft(this.gauche());
         this.activerBouton();
     }
 

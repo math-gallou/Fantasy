@@ -218,6 +218,7 @@ public class Parcelle {
   }
 
   public boolean unSeulElfe(){
+    System.out.println(this.getElfes());
     return this.getElfes().size() == 1;
   }
 }

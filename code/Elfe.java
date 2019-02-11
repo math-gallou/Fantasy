@@ -128,41 +128,33 @@ public class Elfe extends Personnage {
 
   public boolean peutSeDeplacerGauche(ArrayList<Parcelle> p){
     if (this.parcelle.getGauche(p) != null){
-      if (this.parcelle.getGauche(p).restePlace()){
-        return true;
-      }
+      return this.parcelle.getGauche(p).restePlace();
     }
     return false;
   }
 
   public boolean peutSeDeplacerDroite(ArrayList<Parcelle> p){
     if (this.parcelle.getDroite(p) != null){
-      if (this.parcelle.getDroite(p).restePlace()){
-        return true;
-      }
+      return this.parcelle.getDroite(p).restePlace();
     }
     return false;
   }
 
   public boolean peutSeDeplacerHaut(ArrayList<Parcelle> p){
     if (this.parcelle.getHaut(p) != null){
-      if (this.parcelle.getHaut(p).restePlace()){
-        return true;
-      }
+      return this.parcelle.getHaut(p).restePlace();
     }
     return false;
   }
 
   public boolean peutSeDeplacerBas(ArrayList<Parcelle> p){
     if (this.parcelle.getBas(p) != null){
-      if (this.parcelle.getBas(p).restePlace()){
-        return true;
-      }
+      return this.parcelle.getBas(p).restePlace();
     }
     return false;
   }
 
   public boolean peutSeDeplacer(ArrayList<Parcelle> p){
-    return this.peutSeDeplacerBas(p) && this.peutSeDeplacerHaut(p) && this.peutSeDeplacerDroite(p) && this.peutSeDeplacerGauche(p);
+    return this.peutSeDeplacerBas(p) || this.peutSeDeplacerHaut(p) || this.peutSeDeplacerDroite(p) || this.peutSeDeplacerGauche(p);
   }
 }

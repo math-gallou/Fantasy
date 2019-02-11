@@ -11,11 +11,16 @@ public class Normal implements IStrategie {
     Tribu nouvelle_tribu = new Tribu(chef, chef.getParcelle().getPerso());
     chef.getParcelle().ajouterTribu(nouvelle_tribu);
     chef.getParcelle().enleverTribu(chef.getTribu());
+    chef.getTribu().ajouterEnfant(nouvelle_tribu);
     chef.setTribu(nouvelle_tribu);
     chef.devenirChef();
     m.ajouterTribu(nouvelle_tribu);
     for (Gnome g : chef.getParcelle().getGnomes()){
-      g.deserterGnome(nouvelle_tribu);
+      if (g.hasTribu()){
+        g.getTribu().enleverEnfant(g);
+      }
+      g.setTribu(nouvelle_tribu);
+      g.getControleur().changerEtat(new GnomeProtege());
     }
     System.out.println("Je forme ma tribu");
   }
