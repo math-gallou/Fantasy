@@ -15,8 +15,9 @@ public class Chef implements IStrategie {
     System.out.println("Je sollicite");
   }
 
-  public void sEmancipe(){
+  public void sEmancipe(Elfe elfe){
     System.out.println("Je m'émancipe");
+    elfe.getTribu().couperLesLiens();
   }
 
   public void negocie(Elfe chef){

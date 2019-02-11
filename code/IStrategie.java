@@ -9,7 +9,7 @@ public interface IStrategie {
 
   public void sollicite();
 
-  public void sEmancipe();
+  public void sEmancipe(Elfe elfe);
 
   public void negocie(Elfe chef);
 

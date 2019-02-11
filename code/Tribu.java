@@ -139,4 +139,11 @@ public class Tribu extends Element {
   public boolean equals(Tribu t){
     return this.name.equals(t.getName());
   }
+
+  public void couperLesLiens(){
+    if (this.hasParent()){
+      this.parent.enleverEnfant(this);
+      this.setParent(null);
+    }
+  }
 }

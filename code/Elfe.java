@@ -39,7 +39,7 @@ public class Elfe extends Personnage {
   }
 
   public void sEmancipe() {
-    this.role.sEmancipe();
+    this.role.sEmancipe(this);
   }
 
   public void negocie(Elfe chef) {

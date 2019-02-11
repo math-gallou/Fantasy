@@ -239,7 +239,6 @@ public class Monde extends Application{
      * implémentés : tous
      */
     public void activerBouton() {
-        
         this.deplacement.setDisable(!this.joueur.peutSeDeplacer(this.parcelles));
         this.emancipation.setDisable(!this.joueur.peutSEmanciper());
 
@@ -251,7 +250,6 @@ public class Monde extends Application{
         } else {
             this.sollicitation.setDisable(true);
             this.reponse.setDisable(true);
-            this.emancipation.setDisable(true);
             this.negociation.setDisable(true);
             if (this.joueur.getParcelle().unSeulElfe()){
                 this.formation.setDisable(false);

@@ -30,7 +30,7 @@ public class Normal implements IStrategie {
     System.out.println("Je ne peux pas solliciter");
   }
 
-  public void sEmancipe(){
+  public void sEmancipe(Elfe elfe){
     System.out.println("Je ne peux pas m'émanciper");
   }
 
