@@ -16,4 +16,6 @@ public interface IStrategie {
   public Circle dessiner(Color couleur);
 
   public boolean isChef();
+
+  public boolean peutSEmanciper(Elfe elfe);
 }

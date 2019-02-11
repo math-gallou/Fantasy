@@ -157,4 +157,8 @@ public class Elfe extends Personnage {
   public boolean peutSeDeplacer(ArrayList<Parcelle> p){
     return this.peutSeDeplacerBas(p) || this.peutSeDeplacerHaut(p) || this.peutSeDeplacerDroite(p) || this.peutSeDeplacerGauche(p);
   }
+
+  public boolean peutSEmanciper(){
+    return this.role.peutSEmanciper(this);
+  }
 }

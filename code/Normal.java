@@ -47,4 +47,8 @@ public class Normal implements IStrategie {
   public boolean isChef(){
     return false;
   }
+
+  public boolean peutSEmanciper(Elfe elfe){
+    return false;
+  }
 }

@@ -33,4 +33,8 @@ public class Chef implements IStrategie {
     return true;
   }
 
+  public boolean peutSEmanciper(Elfe elfe){
+    return elfe.getTribu().hasParent();
+  }
+
 }

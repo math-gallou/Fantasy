@@ -239,17 +239,14 @@ public class Monde extends Application{
      * implémentés : tous
      */
     public void activerBouton() {
-        if(this.joueur.peutSeDeplacer(this.parcelles)){
-            this.deplacement.setDisable(false);
-        } else {
-            this.deplacement.setDisable(true);
-        }
+        
+        this.deplacement.setDisable(!this.joueur.peutSeDeplacer(this.parcelles));
+        this.emancipation.setDisable(!this.joueur.peutSEmanciper());
 
         if (this.joueur.isChef()){
             this.sollicitation.setDisable(false);
             this.reponse.setDisable(false);
             this.formation.setDisable(true);
-            this.emancipation.setDisable(false);
             this.negociation.setDisable(false);
         } else {
             this.sollicitation.setDisable(true);
